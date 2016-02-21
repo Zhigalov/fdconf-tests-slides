@@ -42,14 +42,24 @@ pre.size-XXS {
     padding: 0;
 }
 
-.reveal .image{
-    height: 700px;
+.reveal .slides > section+section  {
+    height: 100%;
 }
 
-.reveal .image h2{
+.reveal .image {
+    height: 100%;
+}
+
+.reveal .image h1,
+.reveal .image h2,
+.reveal .image h3,
+.reveal .image h4,
+.reveal .image h5 {
     position: fixed;
     right: 0;
     bottom: 0;
-    padding: 15px;
-    background-color: rgba(255,255,255,0.5);
+    padding: 18px;
+    background-color: rgba(255,255,255,0.6);
+    color: #252525;
+    text-shadow: none;
 }
