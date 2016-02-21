@@ -108,8 +108,140 @@ describe('Slug generator', function () {
 });</code></pre>
         </section>
 
+        <section>
+            <pre><code class="hljs bash size-S" data-trim>
+$ mocha test
+            </code></pre>
+
+            <pre class="size-S fragment" style="background-color: #3f3f3f">
+  Slug generator
+    <span style="color:green">✓</span> should cast to lower case
+    <span style="color:green">✓</span> should relace spaces to `-`
+
+  <span style="color:green">2 passing</span> (8ms)</pre>
+        </section>
+
         <section data-background="images/like-a-boss.jpg" class="image">
             <h2>Like a boss</h2>
+        </section>
+    </section>
+
+    <section>
+        <section data-background="images/test-cases.jpg" class="image">
+            <h2>Test cases</h2>
+        </section>
+
+        <section>
+            <h3>Сколько?</h3>
+
+            <ul>
+                <li>+1 тест на каждое действие</li>
+                <li>+1 тест на каждую ветку</li>
+                <li>+1 тест на каждое исключение</li>
+            </ul>
+
+            <blockquote class="fragment">
+                Тест должен проверять что-то одно и минимально перескекаться с другими тестами
+            </blockquote>
+        </section>
+
+        <section>
+            <pre><code class="hljs javascript size-S" data-trim>
+function slugGenerator(str) {
+    return str
+        .toLowerCase()
+        .replace(/\s+/g, '-');
+}
+            </code></pre>
+        </section>
+
+        <section>
+            <pre class="size-S" style="background-color: #3f3f3f">
+  Slug generator
+    <span style="color:green">✓</span> should cast to lower case
+    <span style="color:green">✓</span> should relace spaces to `-`
+
+  <span style="color:green">2 passing</span> (8ms)</pre>
+        </section>
+
+        <section>
+            <h3>А что если ...</h3>
+            <p>... передать не строку?</p>
+
+            <pre><code class="hljs javascript size-XS" data-trim>
+function slugGenerator(str) {
+    if (typeof str !== 'string') {
+        return;
+    }
+
+    return str
+        .toLowerCase()
+        .replace(/\s+/g, '-');
+}
+            </code></pre>
+        </section>
+
+        <section>
+            <h3>А что если ...</h3>
+            <p>... невалидные символы?</p>
+
+            <pre><code class="hljs javascript size-XXS" data-trim>
+function slugGenerator(str) {
+    if (typeof str !== 'string') {
+        return;
+    }
+
+    return str
+        .toLowerCase()
+        .replace(/[^a-z0-9\s]/g, '')
+        .replace(/\s+/g, '-');
+}
+            </code></pre>
+        </section>
+
+        <section>
+            <h3>А что если ...</h3>
+            <p>... начинается с пробела?</p>
+
+            <pre><code class="hljs javascript size-XXS" data-trim>
+function slugGenerator(str) {
+    if (typeof str !== 'string') {
+        return;
+    }
+
+    return str
+        .toLowerCase()
+        .replace(/[^a-z0-9\s]/g, '')
+        .trim()
+        .replace(/\s+/g, '-');
+}
+            </code></pre>
+        </section>
+
+        <section>
+            <pre class="size-XS" style="background-color: #3f3f3f">
+  Slug generator
+    <span style="color:green">✓</span> should cast to lower case
+    <span style="color:green">✓</span> should relace spaces to `-`
+    <span style="color:green">✓</span> should return `undefined` when input data ...
+    <span style="color:green">✓</span> should exclude unknown symbols
+    <span style="color:green">✓</span> should exclude extra spaces
+
+  <span style="color:green">5 passing</span> (10ms)</pre>
+
+  <p class="fragment" style="position: fixed; top: 70%; right: 10%;">
+      <img src="images/docs.png" alt="Docs" class="fragmant" />
+  </p>
+        </section>
+
+        <section data-background="images/thinking.jpg" class="image">
+            <h2>... под другим углом</h2>
+        </section>
+    </section>
+
+    <section>
+        <section data-background="images/understand.jpg" class="image">
+            <h2>понятные ошибки</h2>
         </section>
     </section>
 </div>
