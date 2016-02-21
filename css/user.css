@@ -1,0 +1,55 @@
+section.size-L,
+section .size-L,
+pre.size-L {
+    font-size: 60px;
+    line-height: 90px;
+}
+
+section.size-M,
+section .size-M,
+pre.size-M,
+.yandex section {
+    font-size: 50px;
+    line-height: 75px;
+}
+
+section.size-S,
+section .size-S,
+pre.size-S {
+    font-size: 40px;
+    line-height: 60px;
+}
+
+section.size-XS,
+section .size-XS,
+pre.size-XS {
+    font-size: 30px;
+    line-height: 45px;
+}
+
+section.size-XXS,
+section .size-XXS,
+pre.size-XXS {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.reveal pre {
+    width: 100%;
+}
+
+.reveal .slides > section > section {
+    padding: 0;
+}
+
+.reveal .image{
+    height: 700px;
+}
+
+.reveal .image h2{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    padding: 15px;
+    background-color: rgba(255,255,255,0.5);
+}

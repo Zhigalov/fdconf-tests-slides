@@ -1,67 +1,144 @@
 <!doctype html>
 <html lang="ru">
 
-	<head>
-		<meta charset="utf-8">
+<head>
+	<meta charset="utf-8">
 
-		<title>Про тесты...</title>
+	<title>Про тесты...</title>
 
-		<meta name="description" content="Про тестирование приложений на языке JavaScript">
-		<meta name="author" content="Сергей Жигалов">
+	<meta name="description" content="Про тестирование приложений на языке JavaScript">
+	<meta name="author" content="Сергей Жигалов">
 
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/blood.css">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/blood.css">
+    <link rel="stylesheet" href="css/user.css">
 
-		<!-- Code syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+	<!-- Code syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
-	</head>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
 
-	<body>
+<body>
 
-		<div class="reveal">
+<div class="reveal">
 
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
-				<section>
-					<h3>как начать писать тесты</h3>
-					<p>
-						<small>Сергей, Яедекс</small>
-					</p>
-				</section>
-			</div>
-		</div>
+	<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+	<section>
+		<h3>как начать писать тесты</h3>
+		<p>
+			<small>Сергей, Яндекс</small>
+		</p>
+	</section>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+    <section>
+        <section data-background="images/begin.jpg" class='image'>
+            <h2>Let's go!</h2>
+        </section>
 
-		<script>
+        <section>
+            <h3>Задача</h3>
 
-			// Full list of configuration options available at:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-                slideNumber: true,
-				center: true,
-				transition: 'concave',
-                dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true },
-					{ src: 'plugin/notes/notes.js', async: true }
-				]
-			});
+            <blockquote>
+                На основании названия поста сгенерировать человеко-понятный урл (slug)
+            </blockquote>
+        </section>
 
-		</script>
+        <section>
+            <h3>Пример</h3>
 
-	</body>
+            <pre><code class="hljs javascript size-XS" data-trim>
+'Chat Bots for Telegram' // 'chat-bots-for-telegram'
+'Tune in to Radio'       // 'tune-in-to-radio'
+            </code></pre>
+        </section>
+
+        <section>
+            <h3>Решение</h3>
+
+            <pre><code class="hljs javascript size-XS" data-trim>
+function slugGenerator(str) {
+    return str
+        .toLowerCase()
+        .replace(/\s+/g, '-');
+}
+            </code></pre>
+
+            <pre><code class="hljs javascript size-XS fragment" data-trim>
+module.exports = slugGenerator;
+            </code></pre>
+        </section>
+
+        <section>
+            <h3>mocha</h3>
+
+            <pre><code class="hljs size-S bash" data-trim>
+$ npm install mocha --save-dev
+            </code></pre>
+        </section>
+
+        <section>
+            <pre><code class="hljs javascript size-XS" data-trim>
+// slugGenerator-test.js
+var slugGenerator = require('../src/slugGenerator');
+var assert = require('assert');
+            </code></pre>
+
+            <pre><code class="hljs javascript size-XS fragment" data-trim>
+describe('Slug generator', function () {
+            </code></pre>
+
+            <pre><code class="hljs javascript size-XS fragment">    it('should cast to lower case', function () {
+        var actual = slugGenerator('HellO');
+        assert.equal(actual, 'hello');
+    });</code></pre>
+
+            <pre><code class="hljs javascript size-XS fragment">    it('should relace spaces to `-`', function () {
+        var actual = slugGenerator('mu ha ha');
+        assert.equal(actual, 'mu-ha-ha');
+    });
+});</code></pre>
+        </section>
+
+        <section data-background="images/like-a-boss.jpg" class="image">
+            <h2>Like a boss</h2>
+        </section>
+    </section>
+</div>
+
+</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
+
+	<script>
+
+		// Full list of configuration options available at:
+		// https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			controls: false,
+			progress: true,
+            slideNumber: true,
+			center: true,
+			transition: 'concave',
+            history: true,
+            dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true },
+				{ src: 'plugin/notes/notes.js', async: true }
+			]
+		});
+
+	</script>
+
+</body>
 </html>
