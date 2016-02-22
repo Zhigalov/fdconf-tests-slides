@@ -243,6 +243,116 @@ function slugGenerator(str) {
         <section data-background="images/understand.jpg" class="image">
             <h2>понятные ошибки</h2>
         </section>
+
+        <section>
+            <h3>Задача</h3>
+
+            <blockquote>
+                Проверить что переменная posts является массивом
+            </blockquote>
+
+            <pre><code class="hljs javascript size-S fragment" data-trim>
+posts instanceof Array // true
+            </code></pre>
+        </section>
+
+        <section>
+            <pre><code class="hljs javascript size-S" data-trim>
+var posts = '';
+assert.ok(posts instanceof Array);
+            </code></pre>
+
+            <pre class="size-S fragment" style="background-color: #3f3f3f">1) Assert is array:
+
+  <span style="color:red">AssertionError: false == true</span>
+  <span style="color:green">+ expected</span><span style="color:red"> - actual</span>
+
+  <span style="color:red">-false</span>
+  <span style="color:green">+true</span></pre>
+        </section>
+
+        <section>
+            <pre><code class="hljs javascript size-S" data-trim>
+var posts = '';
+assert.ok(posts instanceof Array,
+         'posts is not array');
+            </code></pre>
+
+            <pre class="size-S fragment" style="background-color: #3f3f3f">1) Assert is array:
+
+  <span style="color:red">AssertionError: posts is not array</span>
+  <span style="color:green">+ expected</span><span style="color:red"> - actual</span>
+
+  <span style="color:red">-false</span>
+  <span style="color:green">+true</span></pre>
+        </section>
+
+        <section>
+            <h2><a href="http://chaijs.com/api/">chai</a></h2>
+        </section>
+
+        <section>
+            <pre><code class="hljs javascript size-S" data-trim>
+var chai = require('chai');
+chai.should();
+            </code></pre>
+
+            <pre><code class="hljs javascript size-S fragment" data-trim>
+var posts = '';
+posts.should.be.an.instanceof(Array);
+            </code></pre>
+
+            <pre class="size-S fragment" style="background-color: #3f3f3f">1) Assert is array:
+
+  <span style="color:red">AssertionError: expected '' to be an
+                  instance of Array</span></pre>
+        </section>
+
+        <section>
+            <h3>Задача</h3>
+
+            <blockquote>
+                Проверить что в массиве posts пять элементов
+            </blockquote>
+
+            <pre><code class="hljs javascript size-S fragment" data-trim>
+posts.length // 5
+            </code></pre>
+        </section>
+
+        <section>
+            <pre><code class="hljs javascript size-S" data-trim>
+var posts = 42;
+assert.equal(posts.length, 5);
+            </code></pre>
+
+            <pre class="size-S fragment" style="background-color: #3f3f3f">1) Assert items count:
+
+  <span style="color:red">AssertionError: undefined == 5</span></pre>
+        </section>
+
+        <section>
+            <pre><code class="hljs javascript size-S" data-trim>
+var chai = require('chai');
+chai.should();
+            </code></pre>
+
+            <pre><code class="hljs javascript size-S fragment" data-trim>
+var posts = 42;
+posts.should.have.length(5);
+            </code></pre>
+
+            <pre class="size-S fragment" style="background-color: #3f3f3f">1) Assert items count:
+
+  <span style="color:red">AssertionError: expected 42 to have
+                  a property 'length'</span></pre>
+        </section>
+    </section>
+
+    <section>
+        <section data-background="images/identically.jpg" class="image">
+            <h3>Выглядели одинаково</h3>
+        </section>
     </section>
 </div>
 
