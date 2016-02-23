@@ -430,6 +430,93 @@ it('should find all posts', function () {
 });</code></pre>
         </section>
     </section>
+
+    <section>
+        <section data-background="images/staible.jpg" class="image">
+            <h3>Стабильно</h3>
+        </section>
+
+        <section>
+            <h3>Задача</h3>
+
+            <blockquote>
+                На основании названия поста на русском языке сгенерировать человеко-понятный урл (slug)
+            </blockquote>
+        </section>
+
+        <section>
+            <pre><code class="hljs javascript size-XS" data-trim>
+function slugGenerator(str) {
+    if (typeof str !== 'string') {
+        return;
+    }
+            </code></pre>
+
+            <pre><code class="hljs javascript size-XS">    return str
+        .toLowerCase()
+        .replace(/[^a-z0-9\s]/g, '')
+        .trim()
+        .replace(/\s+/g, '-');
+}</code></pre>
+        </section>
+
+        <section>
+            <pre><code class="hljs javascript size-XS" data-trim>
+var translitMap = require('translit-russian')
+var translit = require('translit')(translitMap);
+            </code></pre>
+        </section>
+
+        <section>
+            <pre><code class="hljs javascript size-XS" data-trim>
+function slugGenerator(str) {
+    if (typeof str !== 'string') {
+        return;
+    }
+            </code></pre>
+
+            <pre><code class="hljs javascript size-XS">    return translit(str
+        .toLowerCase()
+        .replace(/[^a-zа-яё0-9\s]/g, '')
+        .trim()
+        .replace(/\s+/g, '-'));
+}</code></pre>
+        </section>
+
+        <section>
+            <pre><code class="hljs javascript size-XS" data-trim>
+it('should translit russian characters', function () {
+    var actual = slugGenerator('привет');
+
+    actual.should.be.equal('privet');
+});
+            </code></pre>
+        </section>
+
+        <section>
+            <h2><a href="https://github.com/mfncooper/mockery">mockery</a></h2>
+        </section>
+
+        <section>
+            <pre><code class="hljs javascript size-XS" data-trim>
+it('should translit russian characters', function () {
+    function transliteMock (input) {
+        input.should.be.equal('привет');
+        return 'mu-ha-ha';
+    }
+    mockery.registerMock('translit', function () {
+        return transliteMock;
+    })
+    mockery.enable({ useCleanCache: true });
+    slugGenerator = require('../src/slugGenerator');
+        </code></pre>
+
+        <pre><code class="hljs javascript size-XS fragment">    var actual = slugGenerator('привет');
+
+    actual.should.be.equal('mu-ha-ha');
+});</code></pre>
+        </section>
+    </section>
 </div>
 
 </div>
