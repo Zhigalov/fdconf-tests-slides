@@ -500,12 +500,12 @@ it('should translit russian characters', function () {
         <section>
             <pre><code class="hljs javascript size-XS" data-trim>
 it('should translit russian characters', function () {
-    function transliteMock (input) {
+    function fakeTranslite (input) {
         input.should.be.equal('привет');
         return 'mu-ha-ha';
     }
     mockery.registerMock('translit', function () {
-        return transliteMock;
+        return fakeTranslite;
     })
     mockery.enable({ useCleanCache: true });
     slugGenerator = require('../src/slugGenerator');
@@ -514,6 +514,85 @@ it('should translit russian characters', function () {
         <pre><code class="hljs javascript size-XS fragment">    var actual = slugGenerator('привет');
 
     actual.should.be.equal('mu-ha-ha');
+});</code></pre>
+        </section>
+
+        <section>
+            <h3><a href="http://sinonjs.org/docs/">Sinon</a></h3>
+        </section>
+
+        <section>
+            <pre><code class="hljs javascript size-XS" data-trim>
+it('should translit russian characters', function () {
+    var stub = sinon.stub();
+    stub.withArgs('привет').returns('mu-ha-ha')
+    stub.throws(Error('wrong translit argument'));
+    mockery.registerMock('translit', function () {
+        return stub;
+    })
+    mockery.enable({ useCleanCache: true });
+    slugGenerator = require('../src/slugGenerator');
+            </code></pre>
+<pre><code class="hljs javascript size-XS">    var actual = slugGenerator('привет');
+
+    actual.should.be.equal('mu-ha-ha');
+});</code></pre>
+        </section>
+
+        <section>
+            <h3>Задача</h3>
+
+            <blockquote>
+                На основании названия поста на русском языке сгенерировать человеко-понятный урл (slug)
+            </blockquote>
+        </section>
+
+        <section>
+            <pre><code class="hljs javascript size-XS" data-trim>
+function slugGenerator(str) {
+    if (typeof str !== 'string') {
+        return;
+    }
+            </code></pre>
+
+            <pre><code class="hljs javascript size-XS">    return translate(str
+        .toLowerCase()
+        .replace(/[^a-zа-яё0-9\s]/g, '')
+        .trim()
+        .replace(/\s+/g, '-'));
+}</code></pre>
+        </section>
+
+        <section>
+            <pre><code class="hljs javascript size-XS" data-trim>
+it('should translate', function (done) {
+    slugGenerator('привет')
+        .then(function (actual) {
+            actual.should.be.equal('hi');
+        })
+        .then(done, done);
+});
+            </code></pre>
+        </section>
+
+        <section>
+            <h3><a href="https://github.com/pgte/nock">nock</a></h3>
+        </section>
+
+        <section>
+            <pre><code class="hljs javascript size-XS" data-trim>
+it('should translate', function (done) {
+    nock('https://translate.yandex.net')
+        .get('/api/v1.5/tr.json/translate')
+        .query(true)
+        .reply(200, {text: ['mu-ha-ha']});
+            </code></pre>
+
+            <pre><code class="hljs javascript size-XS">    translate('привет')
+        .then(function (actual) {
+            actual.should.be.equal('mu-ha-ha');
+        })
+        .then(done, done);
 });</code></pre>
         </section>
     </section>
