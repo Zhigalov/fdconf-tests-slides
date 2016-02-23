@@ -353,6 +353,82 @@ posts.should.have.length(5);
         <section data-background="images/identically.jpg" class="image">
             <h3>Выглядели одинаково</h3>
         </section>
+
+        <section>
+            <h3>actual</h3>
+
+<pre><code class="hljs javascript size-XS" data-trim>
+it('should cast to lower case', function () {
+    var actual = slugGenerator('HellO');
+
+    actual.should.be.equal('hello');
+});
+</code></pre>
+        </section>
+
+        <section>
+            <h3>expected</h3>
+
+<pre><code class="hljs javascript size-XS" data-trim>
+it('should cast to lower case', function () {
+    var actual = slugGenerator('HellO');
+
+    var expected = 'hello';
+    actual.should.be.equal(expected);
+});
+</code></pre>
+        </section>
+
+        <section>
+            <h3>sut</h3>
+
+<pre><code class="hljs javascript size-XS" data-trim>
+it('should cast to lower case', function () {
+    var actual = sut('HellO');
+
+    var expected = 'hello';
+    actual.should.be.equal(expected);
+});
+</code></pre>
+        </section>
+
+        <section>
+            <h3>три части</h3>
+
+            <ol>
+                <li class="fragment">Подготовка</li>
+                <li class="fragment">Действие</li>
+                <li class="fragment">Проверка</li>
+            </ol>
+        </section>
+
+        <section>
+            <pre><code class="hljs javascript size-XS" data-trim>
+it('should cast to lower case', function () {
+    // действие
+    var actual = slugGenerator('HellO');
+            </code></pre>
+
+            <pre><code class="hljs javascript size-XS fragment">    // проверка
+    actual.should.be.equal('hello');
+});</code></pre>
+        </section>
+
+        <section>
+            <pre><code class="hljs javascript size-XS" data-trim>
+it('should find all posts', function () {
+    // подготовка
+    new Post({title: 'first'}).create();
+    new Post({title: 'second'}).create();
+            </code></pre>
+
+            <pre><code class="hljs javascript size-XS fragment">    // действие
+    var actual = Posts.findAll();</code></pre>
+
+            <pre><code class="hljs javascript size-XS fragment">    // проверка
+    actual.should.have.langth(2);
+});</code></pre>
+        </section>
     </section>
 </div>
 
