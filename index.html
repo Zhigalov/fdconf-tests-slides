@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Про тесты...</title>
+	<title>Протесты</title>
 
 	<meta name="description" content="Про тестирование приложений на языке JavaScript">
 	<meta name="author" content="Сергей Жигалов">
@@ -33,7 +33,7 @@
 	<!-- Any section element inside of this container is displayed as a slide -->
 <div class="slides">
 	<section>
-		<h3>как начать писать тесты</h3>
+		<h3>как я подсел на тесты</h3>
 
         <p>Сергей Жигалов</p>
         <p><span style="color: red">Я</span>ндекс</p>
@@ -78,7 +78,7 @@ module.exports = slugGenerator;
         </section>
 
         <section>
-            <h3>mocha</h3>
+            <h3><a href="https://mochajs.org/">mocha</a></h3>
 
             <pre><code class="hljs size-S bash" data-trim>
 $ npm install mocha --save-dev
@@ -595,6 +595,60 @@ it('should translate', function (done) {
         .then(done, done);
 });</code></pre>
         </section>
+    </section>
+
+    <section>
+        <section data-background="images/repeat.jpg" class="image">
+            <h3>Запускайте чаще</h3>
+        </section>
+
+        <section>
+            <ul>
+                <li class="fragment">В IDE по хоткею</li>
+                <li class="fragment">При сохранении файла</li>
+                <li class="fragment">Перед коммитом и пушем</li>
+                <li class="fragment">CI сервер</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2><a href="https://travis-ci.org/">Travis</a></h2>
+        </section>
+
+        <section>
+            <h4><a href="https://travis-ci.org/Zhigalov/frontend-fellows-test">demo-time</a></h4>
+        </section>
+    </section>
+
+    <section>
+        <section data-background="images/first-step.png" class="image">
+            <h3>Первый шаг</h3>
+        </section>
+
+        <section>
+            <ul>
+                <li class="fragment">Хелпер</li>
+                <li class="fragment">Базовая модель</li>
+                <li class="fragment">Независимый модуль</li>
+            </ul>
+        </section>
+    </section>
+
+    <section>
+        <h3>Спасибо!</h3>
+
+        <ul>
+            <li><a href="https://mochajs.org/">https://mochajs.org/</a></li>
+            <li><a href="http://chaijs.com/">http://chaijs.com/</a></li>
+            <li><a href="https://github.com/mfncooper/mockery">https://github.com/mfncooper/mockery</a></li>
+            <li><a href="http://sinonjs.org/">http://sinonjs.org/</a></li>
+            <li><a href="https://github.com/pgte/nock">https://github.com/pgte/nock</a></li>
+            <li><a href="https://travis-ci.org/">https://travis-ci.org/</a></li>
+        </ul>
+
+        <p>
+            @sergey_zhigalov
+        </p>
     </section>
 </div>
 
