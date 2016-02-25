@@ -1,3 +1,49 @@
+.reveal h1, .reveal h2 {
+    text-transform: none;
+}
+
+.reveal section img {
+    border: none;
+}
+
+.reveal {
+    font-family: textbook, Arial;
+}
+
+.reveal h1, .reveal h2, .reveal h3 {
+    font-family: textbook-bold, Arial;
+}
+
+.reveal h4, .reveal h5, .reveal h6 {
+    font-family: textbook, Arial;
+}
+
+.reveal code {
+    font-family: monospace, textbook, Arial;
+}
+
+@font-face {
+    font-family: textbook;
+    font-weight: 400;
+    src: local(textbook);
+    src: url('../fonts/textbook-regular.woff'),
+    url('../fonts/textbook-regular.ttf');
+}
+@font-face {
+    font-family: textbook-light;
+    font-weight: 200;
+    src: local(textbook-light);
+    src: url('../fonts/textbook-light.woff'),
+    url('../fonts/textbook-light.ttf');
+}
+@font-face {
+    font-family: textbook-bold;
+    font-weight: 700;
+    src: local(textbook-bold);
+    src: url('../fonts/textbook-bold.woff'),
+    url('../fonts/textbook-bold.ttf');
+}
+
 section.size-L,
 section .size-L,
 pre.size-L {
@@ -36,6 +82,7 @@ pre.size-XXS {
 
 .reveal pre {
     width: 100%;
+    margin: 0;
 }
 
 .reveal .slides > section > section {
