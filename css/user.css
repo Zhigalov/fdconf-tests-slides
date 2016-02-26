@@ -83,6 +83,7 @@ pre.size-XXS {
 .reveal pre {
     width: 100%;
     margin: 0;
+    box-shadow: none;
 }
 
 .reveal .slides > section > section {

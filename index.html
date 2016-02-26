@@ -39,6 +39,12 @@
         <p><img src="images/logo.svg" alt="Яндекс" style="background-color: #111111" /></p>
 	</section>
 
+<!-- ################## Это больно ###################### -->
+
+<section data-background="images/tests-is-pain.jpg" class='image'>
+    <h3>Это больно</h3>
+</section>
+
 <!-- ################## Делают мой код лучше ###################### -->
     <section>
         <section data-background="images/begin.jpg" class='image'>
@@ -92,7 +98,7 @@ describe('Slug generator', function () {</code></pre>
         assert.equal(actual, 'hello');
     });</code></pre>
 
-            <pre><code class="hljs javascript size-XS fragment">    it('should relace spaces to `-`', function () {
+            <pre><code class="hljs javascript size-XS fragment">    it('should replace spaces to `-`', function () {
         var actual = slugGenerator('mu ha ha');
         assert.equal(actual, 'mu-ha-ha');
     });
@@ -109,11 +115,11 @@ $ npm install mocha --save-dev
             <pre><code class="hljs bash size-S fragment" data-trim>
 $ mocha test
             </code></pre>
-
+            <br>
             <pre class="size-S fragment" style="background-color: #3f3f3f">
   Slug generator
     <span style="color:green">✓</span> should cast to lower case
-    <span style="color:green">✓</span> should relace spaces to `-`
+    <span style="color:green">✓</span> should replace spaces to `-`
 
   <span style="color:green">2 passing</span> (8ms)</pre>
         </section>
@@ -201,18 +207,6 @@ function slugGenerator(str) {
 
   <span style="color:green">9 passing</span> (403ms)
   <span style="color:cyan">1 pending</span></pre>
-
-  <p class="fragment" style="position: fixed; top: 85%; right: 10%;">
-      <img src="images/docs.png" alt="Docs" class="fragmant" />
-  </p>
-        </section>
-
-        <section>
-            <ul class="size-S">
-                <li class="fragment">Наглядный пример того, как запустить код</li>
-                <li class="fragment">Всегда актуальная версия</li>
-                <li class="fragment">TODO-лист</li>
-            </ul>
         </section>
     </section>
 
@@ -252,7 +246,7 @@ posts instanceof Array // true
 var posts = '';
 assert.ok(posts instanceof Array);
             </code></pre>
-
+            <br>
             <pre class="size-S fragment" style="background-color: #3f3f3f">1) Assert is array:
 
   <span style="color:red">AssertionError: false == true</span>
@@ -268,7 +262,7 @@ var posts = '';
 assert.ok(posts instanceof Array,
          'posts is not array');
             </code></pre>
-
+            <br>
             <pre class="size-S fragment" style="background-color: #3f3f3f">1) Assert is array:
 
   <span style="color:red">AssertionError: posts is not array</span>
@@ -292,7 +286,7 @@ chai.should();
 var posts = '';
 posts.should.be.an.instanceof(Array);
             </code></pre>
-
+            <br>
             <pre class="size-S fragment" style="background-color: #3f3f3f">1) Assert is array:
 
   <span style="color:red">AssertionError: expected '' to be an
@@ -300,78 +294,16 @@ posts.should.be.an.instanceof(Array);
         </section>
     </section>
 
-<!-- ################### Позволяют сделать большее ################### -->
+<!-- ################### Позволяют сделать больше ################### -->
     <section>
         <section data-background="images/staible.jpg" class="image">
-            <h3>Позволяют сделать большее</h3>
-        </section>
-
-        <section>
-            <ul class="size-S">
-                <li class="fragment">Пример с преобразованием даты</li>
-                <li class="fragment">Пример с отправкой писем</li>
-                <li class="fragment">Транслитерация слага</li>
-            </ul>
+            <h3>Позволяют сделать больше</h3>
         </section>
 
         <section>
             <blockquote>
                 На основании названия поста на русском языке сгенерировать человеко-понятный урл (slug)
             </blockquote>
-        </section>
-
-        <section>
-            <pre><code class="hljs javascript size-XS" data-trim>
-function slugGenerator(str) {
-    if (typeof str !== 'string') {
-        return;
-    }
-            </code></pre>
-
-            <pre><code class="hljs javascript size-XS">    return translit(str
-        .toLowerCase()
-        .replace(/[^a-zа-яё0-9\s]/g, '')
-        .trim()
-        .replace(/\s+/g, '-'));
-}</code></pre>
-        </section>
-
-        <section>
-            <pre><code class="hljs javascript size-XS" data-trim>
-it('should translit russian characters', function () {
-    var actual = slugGenerator('привет');
-
-    actual.should.be.equal('privet');
-});
-            </code></pre>
-        </section>
-
-        <section>
-            <h2><a href="https://github.com/mfncooper/mockery">mockery</a></h2>
-        </section>
-
-        <section>
-            <pre><code class="hljs javascript size-XS" data-trim>
-it('should translit russian characters', function () {
-    function fakeTranslite (input) {
-        input.should.be.equal('привет');
-        return 'mu-ha-ha';
-    }
-    mockery.registerMock('translit', function () {
-        return fakeTranslite;
-    })
-    mockery.enable({ useCleanCache: true });
-    slugGenerator = require('../src/slugGenerator');
-        </code></pre>
-
-        <pre><code class="hljs javascript size-XS fragment">    var actual = slugGenerator('привет');
-
-    actual.should.be.equal('mu-ha-ha');
-});</code></pre>
-        </section>
-
-        <section>
-            <h3><a href="http://sinonjs.org/docs/">Sinon</a></h3>
         </section>
 
         <section>
@@ -509,7 +441,7 @@ it('should find all posts', function () {
     var actual = Posts.findAll();</code></pre>
 
             <pre><code class="hljs javascript size-XS fragment">    // проверка
-    actual.should.have.langth(2);
+    actual.should.have.length(2);
 });</code></pre>
         </section>
     </section>
@@ -554,7 +486,7 @@ node_js:
         </section>
 
         <section>
-            <h4><a href="https://travis-ci.org/Zhigalov/frontend-fellows-test">demo-time</a></h4>
+            <h4><a href="https://travis-ci.org/Zhigalov/frontend-fellows-test/builds" target="_blank">demo-time</a></h4>
         </section>
     </section>
 
