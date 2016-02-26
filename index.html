@@ -217,7 +217,7 @@ function slugGenerator(str) {
         </section>
 
         <section>
-            <pre class="size-XXS" style="background-color: #3f3f3f">
+            <pre style="background-color: #3f3f3f; font-size: 23px;">
   ...
 
   <span style="color:green">1049 passing</span> (17s)
@@ -282,10 +282,9 @@ var chai = require('chai');
 chai.should();
             </code></pre>
 
-            <pre><code class="hljs javascript size-S fragment" data-trim>
+            <pre><code class="hljs javascript size-S fragment">
 var posts = '';
-posts.should.be.an.instanceof(Array);
-            </code></pre>
+posts.should.be.an.instanceof(Array);</code></pre>
             <br>
             <pre class="size-S fragment" style="background-color: #3f3f3f">1) Assert is array:
 
@@ -314,11 +313,15 @@ function slugGenerator(str) {
     }
             </code></pre>
 
-            <pre><code class="hljs javascript size-XS">    return translate(str
-        .toLowerCase()
-        .replace(/[^a-zа-яё0-9\s]/g, '')
-        .trim()
-        .replace(/\s+/g, '-'));
+            <pre><code class="hljs javascript size-XS">    return translate(str)
+        .then(function (result) {
+            return result
+                .toLowerCase()
+                .replace(/[^a-zа-яё0-9\s]/g, '')
+                .trim()
+                .replace(/\s+/g, '-');
+        })
+
 }</code></pre>
         </section>
 
@@ -395,22 +398,9 @@ it('should cast to lower case', function () {
         </section>
 
         <section>
-            <h3>sut</h3>
+            <h2>три части</h2>
 
-<pre><code class="hljs javascript size-XS" data-trim>
-it('should cast to lower case', function () {
-    var actual = sut('HellO');
-
-    var expected = 'hello';
-    actual.should.be.equal(expected);
-});
-</code></pre>
-        </section>
-
-        <section>
-            <h3>три части</h3>
-
-            <ol>
+            <ol class="size-M">
                 <li class="fragment">Подготовка</li>
                 <li class="fragment">Действие</li>
                 <li class="fragment">Проверка</li>
@@ -452,7 +442,7 @@ it('should find all posts', function () {
         </section>
 
         <section>
-            <ul>
+            <ul class="size-M">
                 <li class="fragment">В IDE по хоткею</li>
                 <li class="fragment">При сохранении файла</li>
                 <li class="fragment">Перед коммитом и пушем</li>
@@ -496,7 +486,7 @@ node_js:
         </section>
 
         <section>
-            <ul>
+            <ul class="size-M">
                 <li class="fragment">Хелпер</li>
                 <li class="fragment">Базовая модель</li>
                 <li class="fragment">Независимый модуль</li>
@@ -507,7 +497,7 @@ node_js:
     <section>
         <h3>Спасибо!</h3>
 
-        <ul>
+        <ul class="size-S">
             <li><a href="https://github.com/Zhigalov/frontend-fellows-test">github.com/Zhigalov/frontend-fellows-test</a></li>
             <li><a href="https://zhigalov.github.io/frontend-fellows-slides">zhigalov.github.io/frontend-fellows-slides</a></li>
             <br>
