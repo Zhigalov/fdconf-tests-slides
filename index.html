@@ -39,9 +39,10 @@
         <p><img src="images/logo.svg" alt="Яндекс" style="background-color: #111111" /></p>
 	</section>
 
+<!-- ################## Делают мой код лучше ###################### -->
     <section>
         <section data-background="images/begin.jpg" class='image'>
-            <h2>Let's go!</h2>
+            <h3>Делают мой код лучше</h3>
         </section>
 
         <section>
@@ -50,9 +51,7 @@
             <blockquote>
                 На основании названия поста сгенерировать человеко-понятный урл (slug)
             </blockquote>
-        </section>
 
-        <section>
             <h3>Пример</h3>
 
             <pre><code class="hljs javascript size-XS" data-trim>
@@ -62,7 +61,7 @@
         </section>
 
         <section>
-            <h3>Решение</h3>
+            <h3>Решение до тестов</h3>
 
             <pre><code class="hljs javascript size-XS" data-trim>
 function slugGenerator(str) {
@@ -78,23 +77,15 @@ module.exports = slugGenerator;
         </section>
 
         <section>
-            <h3><a href="https://mochajs.org/">mocha</a></h3>
-
-            <pre><code class="hljs size-S bash" data-trim>
-$ npm install mocha --save-dev
-            </code></pre>
-        </section>
-
-        <section>
             <pre><code class="hljs javascript size-XS" data-trim>
 // slugGenerator-test.js
 var slugGenerator = require('../src/slugGenerator');
 var assert = require('assert');
+
             </code></pre>
 
-            <pre><code class="hljs javascript size-XS fragment" data-trim>
-describe('Slug generator', function () {
-            </code></pre>
+            <pre><code class="hljs javascript size-XS fragment">
+describe('Slug generator', function () {</code></pre>
 
             <pre><code class="hljs javascript size-XS fragment">    it('should cast to lower case', function () {
         var actual = slugGenerator('HellO');
@@ -109,54 +100,17 @@ describe('Slug generator', function () {
         </section>
 
         <section>
-            <pre><code class="hljs bash size-S" data-trim>
+            <h3><a href="https://mochajs.org/">mocha</a></h3>
+
+            <pre><code class="hljs size-S bash" data-trim>
+$ npm install mocha --save-dev
+            </code></pre>
+
+            <pre><code class="hljs bash size-S fragment" data-trim>
 $ mocha test
             </code></pre>
 
             <pre class="size-S fragment" style="background-color: #3f3f3f">
-  Slug generator
-    <span style="color:green">✓</span> should cast to lower case
-    <span style="color:green">✓</span> should relace spaces to `-`
-
-  <span style="color:green">2 passing</span> (8ms)</pre>
-        </section>
-
-        <section data-background="images/like-a-boss.jpg" class="image">
-            <h2>Like a boss</h2>
-        </section>
-    </section>
-
-    <section>
-        <section data-background="images/test-cases.jpg" class="image">
-            <h2>Test cases</h2>
-        </section>
-
-        <section>
-            <h3>Сколько?</h3>
-
-            <ul>
-                <li>+1 тест на каждое действие</li>
-                <li>+1 тест на каждую ветку</li>
-                <li>+1 тест на каждое исключение</li>
-            </ul>
-
-            <blockquote class="fragment">
-                Тест должен проверять что-то одно и минимально перескекаться с другими тестами
-            </blockquote>
-        </section>
-
-        <section>
-            <pre><code class="hljs javascript size-S" data-trim>
-function slugGenerator(str) {
-    return str
-        .toLowerCase()
-        .replace(/\s+/g, '-');
-}
-            </code></pre>
-        </section>
-
-        <section>
-            <pre class="size-S" style="background-color: #3f3f3f">
   Slug generator
     <span style="color:green">✓</span> should cast to lower case
     <span style="color:green">✓</span> should relace spaces to `-`
@@ -185,53 +139,39 @@ function slugGenerator(str) {
             <h3>А что если ...</h3>
             <p>... невалидные символы?</p>
 
-            <pre><code class="hljs javascript size-XXS" data-trim>
+            <pre><code class="hljs javascript size-XS" data-trim>
 function slugGenerator(str) {
     if (typeof str !== 'string') {
         return;
     }
+            </code></pre>
 
+<pre><code class="hljs javascript size-XS">
     return str
         .toLowerCase()
         .replace(/[^a-z0-9\s]/g, '')
         .replace(/\s+/g, '-');
-}
-            </code></pre>
+}</code></pre>
         </section>
 
         <section>
             <h3>А что если ...</h3>
             <p>... начинается с пробела?</p>
 
-            <pre><code class="hljs javascript size-XXS" data-trim>
+            <pre><code class="hljs javascript size-XS" data-trim>
 function slugGenerator(str) {
     if (typeof str !== 'string') {
         return;
     }
+            </code></pre>
 
+<pre><code class="hljs javascript size-XS">
     return str
         .toLowerCase()
         .replace(/[^a-z0-9\s]/g, '')
         .trim()
         .replace(/\s+/g, '-');
-}
-            </code></pre>
-        </section>
-
-        <section>
-            <pre class="size-XS" style="background-color: #3f3f3f">
-  Slug generator
-    <span style="color:green">✓</span> should cast to lower case
-    <span style="color:green">✓</span> should relace spaces to `-`
-    <span style="color:green">✓</span> should return `undefined` when input data ...
-    <span style="color:green">✓</span> should exclude unknown symbols
-    <span style="color:green">✓</span> should exclude extra spaces
-
-  <span style="color:green">5 passing</span> (10ms)</pre>
-
-  <p class="fragment" style="position: fixed; top: 70%; right: 10%;">
-      <img src="images/docs.png" alt="Docs" class="fragmant" />
-  </p>
+}</code></pre>
         </section>
 
         <section data-background="images/thinking.jpg" class="image">
@@ -239,14 +179,65 @@ function slugGenerator(str) {
         </section>
     </section>
 
+<!-- ################### Лучшая документация ##################### -->
     <section>
-        <section data-background="images/understand.jpg" class="image">
-            <h2>понятные ошибки</h2>
+        <section data-background="images/test-cases.jpg" class="image">
+            <h2>Лучшая документация</h2>
         </section>
 
         <section>
-            <h3>Задача</h3>
+            <pre class="size-XS" style="background-color: #3f3f3f">
+  Comment delete
+    <span style="color:green">✓</span> should return 400 when commentId is invalid
+    <span style="color:green">✓</span> should return 404 when comment not found
+    <span style="color:green">✓</span> should return 403 when comment already removed
+    <span style="color:green">✓</span> should return 401 when user not authorized
+    <span style="color:green">✓</span> should return 403 when user is banned
+    <span style="color:green">✓</span> should return 403 when user not author
+    <span style="color:green">✓</span> should success remove comment
+    <span style="color:green">✓</span> should decrement commentsCount
+    <span style="color:green">✓</span> should decrement replyCount
+    <span style="color:cyan">- should notify moderator</span>
 
+  <span style="color:green">9 passing</span> (403ms)
+  <span style="color:cyan">1 pending</span></pre>
+
+  <p class="fragment" style="position: fixed; top: 85%; right: 10%;">
+      <img src="images/docs.png" alt="Docs" class="fragmant" />
+  </p>
+        </section>
+
+        <section>
+            <ul class="size-S">
+                <li class="fragment">Наглядный пример того, как запустить код</li>
+                <li class="fragment">Всегда актуальная версия</li>
+                <li class="fragment">TODO-лист</li>
+            </ul>
+        </section>
+    </section>
+
+<!-- ################### Ускоряют поиск ошибок ################### -->
+    <section>
+        <section data-background="images/search-bug.jpg" class="image">
+            <h3>Ускоряют поиск ошибок</h3>
+        </section>
+
+        <section>
+            <pre class="size-XXS" style="background-color: #3f3f3f">
+  ...
+
+  <span style="color:green">1049 passing</span> (17s)
+  <span style="color:red">1 failing</span>
+
+  1) Comment delete should return 400 when commentId is invalid:
+     <span style="color:red">Error: expected 401 "Unauthorized", got 400 "Bad Request"</span>
+      at Test.assert (tests/v1/comment/comment-delete-test.js:205:15)
+      ...
+
+</pre>
+        </section>
+
+        <section>
             <blockquote>
                 Проверить что переменная posts является массивом
             </blockquote>
@@ -307,51 +298,143 @@ posts.should.be.an.instanceof(Array);
   <span style="color:red">AssertionError: expected '' to be an
                   instance of Array</span></pre>
         </section>
+    </section>
+
+<!-- ################### Позволяют сделать большее ################### -->
+    <section>
+        <section data-background="images/staible.jpg" class="image">
+            <h3>Позволяют сделать большее</h3>
+        </section>
 
         <section>
-            <h3>Задача</h3>
+            <ul class="size-S">
+                <li class="fragment">Пример с преобразованием даты</li>
+                <li class="fragment">Пример с отправкой писем</li>
+                <li class="fragment">Транслитерация слага</li>
+            </ul>
+        </section>
 
+        <section>
             <blockquote>
-                Проверить что в массиве posts пять элементов
+                На основании названия поста на русском языке сгенерировать человеко-понятный урл (slug)
             </blockquote>
+        </section>
 
-            <pre><code class="hljs javascript size-S fragment" data-trim>
-posts.length // 5
+        <section>
+            <pre><code class="hljs javascript size-XS" data-trim>
+function slugGenerator(str) {
+    if (typeof str !== 'string') {
+        return;
+    }
+            </code></pre>
+
+            <pre><code class="hljs javascript size-XS">    return translit(str
+        .toLowerCase()
+        .replace(/[^a-zа-яё0-9\s]/g, '')
+        .trim()
+        .replace(/\s+/g, '-'));
+}</code></pre>
+        </section>
+
+        <section>
+            <pre><code class="hljs javascript size-XS" data-trim>
+it('should translit russian characters', function () {
+    var actual = slugGenerator('привет');
+
+    actual.should.be.equal('privet');
+});
             </code></pre>
         </section>
 
         <section>
-            <pre><code class="hljs javascript size-S" data-trim>
-var posts = 42;
-assert.equal(posts.length, 5);
-            </code></pre>
-
-            <pre class="size-S fragment" style="background-color: #3f3f3f">1) Assert items count:
-
-  <span style="color:red">AssertionError: undefined == 5</span></pre>
+            <h2><a href="https://github.com/mfncooper/mockery">mockery</a></h2>
         </section>
 
         <section>
-            <pre><code class="hljs javascript size-S" data-trim>
-var chai = require('chai');
-chai.should();
+            <pre><code class="hljs javascript size-XS" data-trim>
+it('should translit russian characters', function () {
+    function fakeTranslite (input) {
+        input.should.be.equal('привет');
+        return 'mu-ha-ha';
+    }
+    mockery.registerMock('translit', function () {
+        return fakeTranslite;
+    })
+    mockery.enable({ useCleanCache: true });
+    slugGenerator = require('../src/slugGenerator');
+        </code></pre>
+
+        <pre><code class="hljs javascript size-XS fragment">    var actual = slugGenerator('привет');
+
+    actual.should.be.equal('mu-ha-ha');
+});</code></pre>
+        </section>
+
+        <section>
+            <h3><a href="http://sinonjs.org/docs/">Sinon</a></h3>
+        </section>
+
+        <section>
+            <pre><code class="hljs javascript size-XS" data-trim>
+function slugGenerator(str) {
+    if (typeof str !== 'string') {
+        return;
+    }
             </code></pre>
 
-            <pre><code class="hljs javascript size-S fragment" data-trim>
-var posts = 42;
-posts.should.have.length(5);
+            <pre><code class="hljs javascript size-XS">    return translate(str
+        .toLowerCase()
+        .replace(/[^a-zа-яё0-9\s]/g, '')
+        .trim()
+        .replace(/\s+/g, '-'));
+}</code></pre>
+        </section>
+
+        <section>
+            <pre><code class="hljs javascript size-XS" data-trim>
+it('should translate', function (done) {
+    slugGenerator('привет')
+        .then(function (actual) {
+            actual.should.be.equal('hi');
+        })
+        .then(done, done);
+});
+            </code></pre>
+        </section>
+
+        <section>
+            <h3><a href="https://github.com/pgte/nock">nock</a></h3>
+        </section>
+
+        <section>
+            <pre><code class="hljs javascript size-XS" data-trim>
+it('should translate', function (done) {
+    nock('https://translate.yandex.net')
+        .get('/api/v1.5/tr.json/translate')
+        .query(true)
+        .reply(200, {text: ['mu-ha-ha']});
             </code></pre>
 
-            <pre class="size-S fragment" style="background-color: #3f3f3f">1) Assert items count:
-
-  <span style="color:red">AssertionError: expected 42 to have
-                  a property 'length'</span></pre>
+            <pre><code class="hljs javascript size-XS">    translate('привет')
+        .then(function (actual) {
+            actual.should.be.equal('mu-ha-ha');
+        })
+        .then(done, done);
+});</code></pre>
         </section>
     </section>
 
+<!-- ################### Обновлять зависимости ################### -->
+    <section>
+        <section data-background="images/dependence.jpg" class="image">
+            <h3>Обновлять зависимости</h3>
+        </section>
+    </section>
+
+<!-- ################### Держат команду в тонусе ################### -->
     <section>
         <section data-background="images/identically.jpg" class="image">
-            <h3>Выглядели одинаково</h3>
+            <h3>Держат команду в тонусе</h3>
         </section>
 
         <section>
@@ -427,172 +510,6 @@ it('should find all posts', function () {
 
             <pre><code class="hljs javascript size-XS fragment">    // проверка
     actual.should.have.langth(2);
-});</code></pre>
-        </section>
-    </section>
-
-    <section>
-        <section data-background="images/staible.jpg" class="image">
-            <h3>Стабильно</h3>
-        </section>
-
-        <section>
-            <h3>Задача</h3>
-
-            <blockquote>
-                На основании названия поста на русском языке сгенерировать человеко-понятный урл (slug)
-            </blockquote>
-        </section>
-
-        <section>
-            <pre><code class="hljs javascript size-XS" data-trim>
-function slugGenerator(str) {
-    if (typeof str !== 'string') {
-        return;
-    }
-            </code></pre>
-
-            <pre><code class="hljs javascript size-XS">    return str
-        .toLowerCase()
-        .replace(/[^a-z0-9\s]/g, '')
-        .trim()
-        .replace(/\s+/g, '-');
-}</code></pre>
-        </section>
-
-        <section>
-            <pre><code class="hljs javascript size-XS" data-trim>
-var translitMap = require('translit-russian')
-var translit = require('translit')(translitMap);
-            </code></pre>
-        </section>
-
-        <section>
-            <pre><code class="hljs javascript size-XS" data-trim>
-function slugGenerator(str) {
-    if (typeof str !== 'string') {
-        return;
-    }
-            </code></pre>
-
-            <pre><code class="hljs javascript size-XS">    return translit(str
-        .toLowerCase()
-        .replace(/[^a-zа-яё0-9\s]/g, '')
-        .trim()
-        .replace(/\s+/g, '-'));
-}</code></pre>
-        </section>
-
-        <section>
-            <pre><code class="hljs javascript size-XS" data-trim>
-it('should translit russian characters', function () {
-    var actual = slugGenerator('привет');
-
-    actual.should.be.equal('privet');
-});
-            </code></pre>
-        </section>
-
-        <section>
-            <h2><a href="https://github.com/mfncooper/mockery">mockery</a></h2>
-        </section>
-
-        <section>
-            <pre><code class="hljs javascript size-XS" data-trim>
-it('should translit russian characters', function () {
-    function fakeTranslite (input) {
-        input.should.be.equal('привет');
-        return 'mu-ha-ha';
-    }
-    mockery.registerMock('translit', function () {
-        return fakeTranslite;
-    })
-    mockery.enable({ useCleanCache: true });
-    slugGenerator = require('../src/slugGenerator');
-        </code></pre>
-
-        <pre><code class="hljs javascript size-XS fragment">    var actual = slugGenerator('привет');
-
-    actual.should.be.equal('mu-ha-ha');
-});</code></pre>
-        </section>
-
-        <section>
-            <h3><a href="http://sinonjs.org/docs/">Sinon</a></h3>
-        </section>
-
-        <section>
-            <pre><code class="hljs javascript size-XS" data-trim>
-it('should translit russian characters', function () {
-    var stub = sinon.stub();
-    stub.withArgs('привет').returns('mu-ha-ha')
-    stub.throws(Error('wrong translit argument'));
-    mockery.registerMock('translit', function () {
-        return stub;
-    })
-    mockery.enable({ useCleanCache: true });
-    slugGenerator = require('../src/slugGenerator');
-            </code></pre>
-<pre><code class="hljs javascript size-XS">    var actual = slugGenerator('привет');
-
-    actual.should.be.equal('mu-ha-ha');
-});</code></pre>
-        </section>
-
-        <section>
-            <h3>Задача</h3>
-
-            <blockquote>
-                На основании названия поста на русском языке сгенерировать человеко-понятный урл (slug)
-            </blockquote>
-        </section>
-
-        <section>
-            <pre><code class="hljs javascript size-XS" data-trim>
-function slugGenerator(str) {
-    if (typeof str !== 'string') {
-        return;
-    }
-            </code></pre>
-
-            <pre><code class="hljs javascript size-XS">    return translate(str
-        .toLowerCase()
-        .replace(/[^a-zа-яё0-9\s]/g, '')
-        .trim()
-        .replace(/\s+/g, '-'));
-}</code></pre>
-        </section>
-
-        <section>
-            <pre><code class="hljs javascript size-XS" data-trim>
-it('should translate', function (done) {
-    slugGenerator('привет')
-        .then(function (actual) {
-            actual.should.be.equal('hi');
-        })
-        .then(done, done);
-});
-            </code></pre>
-        </section>
-
-        <section>
-            <h3><a href="https://github.com/pgte/nock">nock</a></h3>
-        </section>
-
-        <section>
-            <pre><code class="hljs javascript size-XS" data-trim>
-it('should translate', function (done) {
-    nock('https://translate.yandex.net')
-        .get('/api/v1.5/tr.json/translate')
-        .query(true)
-        .reply(200, {text: ['mu-ha-ha']});
-            </code></pre>
-
-            <pre><code class="hljs javascript size-XS">    translate('привет')
-        .then(function (actual) {
-            actual.should.be.equal('mu-ha-ha');
-        })
-        .then(done, done);
 });</code></pre>
         </section>
     </section>
