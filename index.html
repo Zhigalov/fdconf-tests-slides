@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Протесты</title>
+	<title>«Если у вас нету тестов ...»</title>
 
 	<meta name="description" content="Про тестирование приложений на языке JavaScript">
 	<meta name="author" content="Сергей Жигалов">
@@ -32,12 +32,106 @@
 
 	<!-- Any section element inside of this container is displayed as a slide -->
 <div class="slides">
-	<section>
-		<h3>как я подсел на тесты</h3>
+<section>
+	<h3>«Если у вас нету тестов ...»</h3>
 
-        <p>Сергей Жигалов</p>
-        <p><img src="images/logo.svg" alt="Яндекс" style="background-color: #111111" /></p>
-	</section>
+    <p>Сергей Жигалов</p>
+    <p><img src="images/logo.svg" alt="Яндекс" style="background-color: #111111" /></p>
+</section>
+
+<section>
+    <section data-background="images/tests-is-pain.jpg" class='image'>
+        <h3>Зачем?</h3>
+    </section>
+
+    <section>
+        <h4>Зачем это нужно мне, фронтенд разработчику?</h4>
+    </section>
+
+    <section>
+        <h4>Много-много лет назад...</h4>
+
+        <ul>
+            <li class="fragment">Показать всплывашку</li>
+            <li class="fragment">Подсветить инпут</li>
+            <li class="fragment">Задизейблить кнопочку</li>
+        </ul>
+    </section>
+
+    <section>
+        <h4>Много-много лет назад...</h4>
+
+        <img src="images/old_web_application.png" alt="Old web application" />
+    </section>
+
+    <section>
+        <h4>... то сейчас</h4>
+
+        <img src="images/new_web_application.png" alt="New web application" />
+    </section>
+
+    <section>
+        <h4>Поддержка кода</h4>
+
+        <ul>
+            <li class="fragment">Рефакторинг</li>
+            <li class="fragment">Целостность продукта при распределенной разработке</li>
+            <li class="fragment">Живая документация</li>
+        </ul>
+    </section>
+
+    <section>
+        <h4>Bug Fix Driving Development</h4>
+
+        <ol>
+            <li>По описанию бага пишем тест</li>
+            <li>Проверяем что баг воспроизводится</li>
+            <li>Чиним баг</li>
+            <li>Проверяем что бага нет</li>
+        </ol>
+    </section>
+
+    <section>
+        <h4>Bug Fix Driving Development</h4>
+
+        <ul>
+            <li class="fragment">Покрыли пропущеный кейс</li>
+            <li class="fragment">Больше не словим этот баг</li>
+            <li class="fragment">Легче чинить баг</li>
+        </ul>
+    </section>
+
+    <section data-background="images/mother-child.jpeg" class='image'>
+        <h3>как ребенок</h3>
+    </section>
+
+    <section>
+        <h4>Приемы тестирования можно использовать и без тестов</h4>
+    </section>
+
+    <section>
+        <h4><a href="https://github.com/pgte/nock" target="_blank">nock</a></h4>
+
+        <pre><code class="hljs javascript size-XS" data-trim>
+var nock = require('nock');
+
+nock('https://translate.yandex.net')
+    .get('/api/v1.5/tr.json/translate')
+    .query(true)
+    .reply(200, {text: ['Hello, world!']});
+        </code></pre>
+    </section>
+</section>
+
+
+
+
+
+
+
+
+
+
 
 <!-- ################## Это больно ###################### -->
 
