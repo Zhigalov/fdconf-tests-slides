@@ -69,15 +69,15 @@ pre.size-S {
 section.size-XS,
 section .size-XS,
 pre.size-XS {
-    font-size: 30px;
-    line-height: 45px;
+    font-size: 27px;
+    line-height: 40px;
 }
 
 section.size-XXS,
 section .size-XXS,
 pre.size-XXS {
-    font-size: 20px;
-    line-height: 30px;
+    font-size: 25px;
+    line-height: 37px;
 }
 
 .reveal pre {

@@ -39,13 +39,11 @@
     <p><img src="images/logo.svg" alt="Яндекс" style="background-color: #111111" /></p>
 </section>
 
+<!-- Мотивационная часть в которой я стараюсь объяснить зачем нужны тесты -->
+
 <section>
     <section data-background="images/tests-is-pain.jpg" class='image'>
         <h3>Зачем?</h3>
-    </section>
-
-    <section>
-        <h4>Зачем это нужно мне, фронтенд разработчику?</h4>
     </section>
 
     <section>
@@ -75,24 +73,25 @@
 
         <ul>
             <li class="fragment">Рефакторинг</li>
+            <li class="fragment">Обновление зависимостей</li>
             <li class="fragment">Целостность продукта при распределенной разработке</li>
             <li class="fragment">Живая документация</li>
         </ul>
     </section>
 
     <section>
-        <h4>Bug Fix Driving Development</h4>
+        <h3>Багфикс через тесты</h3>
 
         <ol>
-            <li>По описанию бага пишем тест</li>
-            <li>Проверяем что баг воспроизводится</li>
-            <li>Чиним баг</li>
-            <li>Проверяем что бага нет</li>
+            <li class="fragment">По описанию бага пишем тест</li>
+            <li class="fragment">Проверяем что баг воспроизводится</li>
+            <li class="fragment">Чиним баг</li>
+            <li class="fragment">Проверяем что бага нет</li>
         </ol>
     </section>
 
     <section>
-        <h4>Bug Fix Driving Development</h4>
+        <h3>Багфикс через тесты</h3>
 
         <ul>
             <li class="fragment">Покрыли пропущеный кейс</li>
@@ -110,7 +109,7 @@
     </section>
 
     <section>
-        <h4><a href="https://github.com/pgte/nock" target="_blank">nock</a></h4>
+        <h3><a href="https://github.com/pgte/nock" target="_blank">nock</a></h3>
 
         <pre><code class="hljs javascript size-XS" data-trim>
 var nock = require('nock');
@@ -123,490 +122,398 @@ nock('https://translate.yandex.net')
     </section>
 </section>
 
-
-
-
-
-
-
-
-
-
-
-<!-- ################## Это больно ###################### -->
-
-<section data-background="images/tests-is-pain.jpg" class='image'>
-    <h3>Это больно</h3>
+<section data-background="images/begin.jpg" class='image'>
+    <h3>К делу!</h3>
 </section>
 
-<!-- ################## Делают мой код лучше ###################### -->
+<section>
+
     <section>
-        <section data-background="images/begin.jpg" class='image'>
-            <h3>Делают мой код лучше</h3>
-        </section>
+        <h3>Тестирование модулей</h3>
+    </section>
 
-        <section>
-            <h3>Задача</h3>
+    <section>
+        <h3>Билдер хештегов</h3>
 
-            <blockquote>
-                На основании названия поста сгенерировать человеко-понятный урл (slug)
-            </blockquote>
+        <pre><code class="hljs javascript size-XS" data-trim>
+'котаны'                    // '#Котаны'
+'Живи быстро, умри молодым' // '#ЖивиБыстроУмриМолодым'
+        </code></pre>
+    </section>
 
-            <h3>Пример</h3>
-
-            <pre><code class="hljs javascript size-XS" data-trim>
-'Chat Bots for Telegram' // 'chat-bots-for-telegram'
-'Tune in to Radio'       // 'tune-in-to-radio'
-            </code></pre>
-        </section>
-
-        <section>
-            <h3>Решение до тестов</h3>
-
-            <pre><code class="hljs javascript size-XS" data-trim>
-function slugGenerator(str) {
-    return str
-        .toLowerCase()
-        .replace(/\s+/g, '-');
+    <section>
+        <pre><code class="hljs javascript size-S" data-trim>
+function hashTagGenerator(words) {
+    return '#' + words
+            .split(/\s+/)
+            .map(normalizeWord)
+            .join('');
 }
-            </code></pre>
+        </code></pre>
 
-            <pre><code class="hljs javascript size-XS fragment" data-trim>
-module.exports = slugGenerator;
-            </code></pre>
-        </section>
+        <pre class="fragment"><code class="hljs javascript size-S" data-trim>
+function normalizeWord(word) {
+    return word.charAt(0).toUpperCase() +
+        word.toLowerCase().slice(1);
+}
+        </code></pre>
 
-        <section>
-            <pre><code class="hljs javascript size-XS" data-trim>
-// slugGenerator-test.js
-var slugGenerator = require('../src/slugGenerator');
-var assert = require('assert');
+        <pre><code class="hljs javascript size-S fragment" data-trim>
+module.exports = hashTagGenerator;
+        </code></pre>
+    </section>
 
-            </code></pre>
+    <section>
+        <pre class="size-XS">app/
+<span class="grey">└──</span> src
+<span class="grey"> </span>   <span class="grey">└──</span> hashTagGenerator.js</span>
+<span class="grey"> </span>   <span class="grey">└──</span> ...</span>
+<span class="grey">└──</span> test
+    <span class="grey">└──</span> hashTagGenerator-test.js</span>
+    <span class="grey">└──</span> ...</span>
+        </pre>
+        <br />
+        <pre class="fragment"><code class="hljs javascript size-XS" data-trim>
+// hashTagGenerator-test.js
+        </code></pre>
 
-            <pre><code class="hljs javascript size-XS fragment">
-describe('Slug generator', function () {</code></pre>
+        <pre class="fragment"><code class="hljs javascript size-XS">
+var hasTagGenerator = require('../src/hashTagGenerator');
+require('chai').should();</code></pre>
 
-            <pre><code class="hljs javascript size-XS fragment">    it('should cast to lower case', function () {
-        var actual = slugGenerator('HellO');
-        assert.equal(actual, 'hello');
-    });</code></pre>
-
-            <pre><code class="hljs javascript size-XS fragment">    it('should replace spaces to `-`', function () {
-        var actual = slugGenerator('mu ha ha');
-        assert.equal(actual, 'mu-ha-ha');
-    });
+        <pre class="fragment"><code class="hljs javascript size-XS">
+describe('Hash tag generator', function () {
+    /* test */
 });</code></pre>
-        </section>
+   </section>
 
-        <section>
-            <h3><a href="https://mochajs.org/">mocha</a></h3>
 
-            <pre><code class="hljs size-S bash" data-trim>
+    <section>
+        <pre><code class="hljs javascript size-XS" data-trim>
+it('should normalize words', function () {
+    var actual = hasTagGenerator('hello DUMP');
+
+    actual.should.be.equal('#HelloDump');
+});
+        </code></pre>
+    </section>
+
+    <section>
+        <h3><a href="https://mochajs.org/">mocha</a></h3>
+
+        <pre><code class="hljs size-S bash" data-trim>
 $ npm install mocha --save-dev
-            </code></pre>
+        </code></pre>
 
-            <pre><code class="hljs bash size-S fragment" data-trim>
+        <pre><code class="hljs bash size-S fragment" data-trim>
 $ mocha test
-            </code></pre>
-            <br>
-            <pre class="size-S fragment" style="background-color: #3f3f3f">
-  Slug generator
-    <span style="color:green">✓</span> should cast to lower case
-    <span style="color:green">✓</span> should replace spaces to `-`
+        </code></pre>
+        <br>
+        <pre class="size-S fragment" style="background-color: #3f3f3f">
+  Hash tag generator
+    <span style="color:green">✓</span> should start with #
+    <span style="color:green">✓</span> should concat words
+    <span style="color:green">✓</span> should normalize words
 
-  <span style="color:green">2 passing</span> (8ms)</pre>
-        </section>
-
-        <section>
-            <h3>А что если ...</h3>
-            <p>... передать не строку?</p>
-
-            <pre><code class="hljs javascript size-XS" data-trim>
-function slugGenerator(str) {
-    if (typeof str !== 'string') {
-        return;
-    }
-
-    return str
-        .toLowerCase()
-        .replace(/\s+/g, '-');
-}
-            </code></pre>
-        </section>
-
-        <section>
-            <h3>А что если ...</h3>
-            <p>... невалидные символы?</p>
-
-            <pre><code class="hljs javascript size-XS" data-trim>
-function slugGenerator(str) {
-    if (typeof str !== 'string') {
-        return;
-    }
-            </code></pre>
-
-<pre><code class="hljs javascript size-XS">
-    return str
-        .toLowerCase()
-        .replace(/[^a-z0-9\s]/g, '')
-        .replace(/\s+/g, '-');
-}</code></pre>
-        </section>
-
-        <section>
-            <h3>А что если ...</h3>
-            <p>... начинается с пробела?</p>
-
-            <pre><code class="hljs javascript size-XS" data-trim>
-function slugGenerator(str) {
-    if (typeof str !== 'string') {
-        return;
-    }
-            </code></pre>
-
-<pre><code class="hljs javascript size-XS">
-    return str
-        .toLowerCase()
-        .replace(/[^a-z0-9\s]/g, '')
-        .trim()
-        .replace(/\s+/g, '-');
-}</code></pre>
-        </section>
-
-        <section data-background="images/thinking.jpg" class="image">
-            <h2>... под другим углом</h2>
-        </section>
+<span style="color:green">3 passing</span> (9ms)</pre>
     </section>
 
-<!-- ################### Лучшая документация ##################### -->
-    <section>
-        <section data-background="images/test-cases.jpg" class="image">
-            <h2>Лучшая документация</h2>
-        </section>
-
-        <section>
-            <pre class="size-XS" style="background-color: #3f3f3f">
-  Comment delete
-    <span style="color:green">✓</span> should return 400 when commentId is invalid
-    <span style="color:green">✓</span> should return 404 when comment not found
-    <span style="color:green">✓</span> should return 403 when comment already removed
-    <span style="color:green">✓</span> should return 401 when user not authorized
-    <span style="color:green">✓</span> should return 403 when user is banned
-    <span style="color:green">✓</span> should return 403 when user not author
-    <span style="color:green">✓</span> should success remove comment
-    <span style="color:green">✓</span> should decrement commentsCount
-    <span style="color:green">✓</span> should decrement replyCount
-    <span style="color:cyan">- should notify moderator</span>
-
-  <span style="color:green">9 passing</span> (403ms)
-  <span style="color:cyan">1 pending</span></pre>
-        </section>
+    <section data-background="images/thinking.jpg" class="image">
+        <h2>... под другим углом</h2>
     </section>
 
-<!-- ################### Ускоряют поиск ошибок ################### -->
     <section>
-        <section data-background="images/search-bug.jpg" class="image">
-            <h3>Ускоряют поиск ошибок</h3>
-        </section>
+        <h3>И в какой-то момент</h3>
 
-        <section>
-            <pre style="background-color: #3f3f3f; font-size: 23px;">
-  ...
+        <pre><code class="hljs javascript size-XS" data-trim>
+it('should clean extra symbols', function () {
+    var actual = hasTagGenerator('    #@my-ha-ha!!!');
 
-  <span style="color:green">1049 passing</span> (17s)
-  <span style="color:red">1 failing</span>
-
-  1) Comment delete should return 400 when commentId is invalid:
-     <span style="color:red">Error: expected 401 "Unauthorized", got 400 "Bad Request"</span>
-      at Test.assert (tests/v1/comment/comment-delete-test.js:205:15)
-      ...
-
-</pre>
-        </section>
-
-        <section>
-            <blockquote>
-                Проверить что переменная posts является массивом
-            </blockquote>
-
-            <pre><code class="hljs javascript size-S fragment" data-trim>
-posts instanceof Array // true
-            </code></pre>
-        </section>
-
-        <section>
-            <pre><code class="hljs javascript size-S" data-trim>
-var posts = '';
-assert.ok(posts instanceof Array);
-            </code></pre>
-            <br>
-            <pre class="size-S fragment" style="background-color: #3f3f3f">1) Assert is array:
-
-  <span style="color:red">AssertionError: false == true</span>
-  <span style="color:green">+ expected</span><span style="color:red"> - actual</span>
-
-  <span style="color:red">-false</span>
-  <span style="color:green">+true</span></pre>
-        </section>
-
-        <section>
-            <pre><code class="hljs javascript size-S" data-trim>
-var posts = '';
-assert.ok(posts instanceof Array,
-         'posts is not array');
-            </code></pre>
-            <br>
-            <pre class="size-S fragment" style="background-color: #3f3f3f">1) Assert is array:
-
-  <span style="color:red">AssertionError: posts is not array</span>
-  <span style="color:green">+ expected</span><span style="color:red"> - actual</span>
-
-  <span style="color:red">-false</span>
-  <span style="color:green">+true</span></pre>
-        </section>
-
-        <section>
-            <h2><a href="http://chaijs.com/api/">chai</a></h2>
-        </section>
-
-        <section>
-            <pre><code class="hljs javascript size-S" data-trim>
-var chai = require('chai');
-chai.should();
-            </code></pre>
-
-            <pre><code class="hljs javascript size-S fragment">
-var posts = '';
-posts.should.be.an.instanceof(Array);</code></pre>
-            <br>
-            <pre class="size-S fragment" style="background-color: #3f3f3f">1) Assert is array:
-
-  <span style="color:red">AssertionError: expected '' to be an
-                  instance of Array</span></pre>
-        </section>
-    </section>
-
-<!-- ################### Позволяют сделать больше ################### -->
-    <section>
-        <section data-background="images/staible.jpg" class="image">
-            <h3>Позволяют сделать больше</h3>
-        </section>
-
-        <section>
-            <blockquote>
-                На основании названия поста на русском языке сгенерировать человеко-понятный урл (slug)
-            </blockquote>
-        </section>
-
-        <section>
-            <pre><code class="hljs javascript size-XS" data-trim>
-function slugGenerator(str) {
-    if (typeof str !== 'string') {
-        return;
-    }
-            </code></pre>
-
-            <pre><code class="hljs javascript size-XS">    return translate(str)
-        .then(function (result) {
-            return result
-                .toLowerCase()
-                .replace(/[^a-zа-яё0-9\s]/g, '')
-                .trim()
-                .replace(/\s+/g, '-');
-        })
-
-}</code></pre>
-        </section>
-
-        <section>
-            <pre><code class="hljs javascript size-XS" data-trim>
-it('should translate', function (done) {
-    slugGenerator('привет')
-        .then(function (actual) {
-            actual.should.be.equal('hi');
-        })
-        .then(done, done);
+    actual.should.be.equal('#MyHaHa');
 });
-            </code></pre>
-        </section>
+        </code></pre>
+    </section>
+</section>
 
-        <section>
-            <h3><a href="https://github.com/pgte/nock">nock</a></h3>
-        </section>
-
-        <section>
-            <pre><code class="hljs javascript size-XS" data-trim>
-it('should translate', function (done) {
-    nock('https://translate.yandex.net')
-        .get('/api/v1.5/tr.json/translate')
-        .query(true)
-        .reply(200, {text: ['mu-ha-ha']});
-            </code></pre>
-
-            <pre><code class="hljs javascript size-XS">    translate('привет')
-        .then(function (actual) {
-            actual.should.be.equal('mu-ha-ha');
-        })
-        .then(done, done);
-});</code></pre>
-        </section>
+<section>
+    <section>
+        <h3>Клиент-сайд тесты</h3>
     </section>
 
-<!-- ################### Обновлять зависимости ################### -->
-    <section>
-        <section data-background="images/dependence.jpg" class="image">
-            <h3>Обновлять зависимости</h3>
-        </section>
-    </section>
-
-<!-- ################### Держат команду в тонусе ################### -->
-    <section>
-        <section data-background="images/identically.jpg" class="image">
-            <h3>Держат команду в тонусе</h3>
-        </section>
-
-        <section>
-            <h3>actual</h3>
-
-<pre><code class="hljs javascript size-XS" data-trim>
-it('should cast to lower case', function () {
-    var actual = slugGenerator('HellO');
-
-    actual.should.be.equal('hello');
-});
-</code></pre>
-        </section>
-
-        <section>
-            <h3>expected</h3>
-
-<pre><code class="hljs javascript size-XS" data-trim>
-it('should cast to lower case', function () {
-    var actual = slugGenerator('HellO');
-
-    var expected = 'hello';
-    actual.should.be.equal(expected);
-});
-</code></pre>
-        </section>
-
-        <section>
-            <h2>три части</h2>
-
-            <ol class="size-M">
-                <li class="fragment">Подготовка</li>
-                <li class="fragment">Действие</li>
-                <li class="fragment">Проверка</li>
-            </ol>
-        </section>
-
-        <section>
-            <pre><code class="hljs javascript size-XS" data-trim>
-it('should cast to lower case', function () {
-    // действие
-    var actual = slugGenerator('HellO');
-            </code></pre>
-
-            <pre><code class="hljs javascript size-XS fragment">    // проверка
-    actual.should.be.equal('hello');
-});</code></pre>
-        </section>
-
-        <section>
-            <pre><code class="hljs javascript size-XS" data-trim>
-it('should find all posts', function () {
-    // подготовка
-    new Post({title: 'first'}).create();
-    new Post({title: 'second'}).create();
-            </code></pre>
-
-            <pre><code class="hljs javascript size-XS fragment">    // действие
-    var actual = Posts.findAll();</code></pre>
-
-            <pre><code class="hljs javascript size-XS fragment">    // проверка
-    actual.should.have.length(2);
-});</code></pre>
-        </section>
+    <section data-background="images/twitter-signin.jpg" class='image'>
+        <h4><a href="https://twitter.com/signup" target="_blank">DEMO</a></h4>
     </section>
 
     <section>
-        <section data-background="images/repeat.jpg" class="image">
-            <h3>Запускайте чаще</h3>
-        </section>
+<pre class="javascript join-top fragment" data-fragment-index="1"><code class="size-XS">describe('Twitter signup', function () {</code></pre>
+<pre class="javascript join-top fragment" data-fragment-index="2"><code class="size-XS">    it('should alert when enter `twitterok`', function () {</code></pre>
+<pre class="javascript join-top fragment" data-fragment-index="3"><code class="size-XS">        $('#full-name').val('twitterok').trigger('input');</code></pre>
+<pre class="javascript join-top fragment" data-fragment-index="3"><code class="size-XS"> </code></pre>
+<pre class="javascript join-top fragment" data-fragment-index="3"><code class="size-XS">        $('.notwitter').hasClass('active').should.be.true;</code></pre>
+<pre class="javascript join-top fragment" data-fragment-index="2"><code class="size-XS">    });</code></pre>
+<pre class="javascript join-top fragment" data-fragment-index="1"><code class="size-XS">});</code></pre>
+    </section>
 
-        <section>
-            <ul class="size-M">
-                <li class="fragment">В IDE по хоткею</li>
-                <li class="fragment">При сохранении файла</li>
-                <li class="fragment">Перед коммитом и пушем</li>
-                <li class="fragment">CI сервер</li>
-            </ul>
-        </section>
+    <section>
+        <h4>&lt;head&gt;</h4>
+        <pre><code class="hljs html size-XS" data-trim>
+&lt;!-- подключаем стили Mocha --&gt;
+&lt;link
+    rel="stylesheet"
+    href="./node_modules/mocha/mocha.css"&gt;
+        </code></pre>
+    </section>
 
-        <section>
-            <h2><a href="https://travis-ci.org/">Travis</a></h2>
-        </section>
+    <section>
+        <h4>&lt;body&gt;</h4>
+        <pre><code class="hljs html size-XS" data-trim>
+&lt;!-- подключаем библиотеки --&gt;
+&lt;script src="./node_modules/mocha/mocha.js"&gt;&lt;/script&gt;
+&lt;script src="./node_modules/chai/chai.js"&gt;&lt;/script&gt;
+        </code></pre>
 
-        <section>
-            <h3>package.json</h3>
-                <pre><code class="hljs javascript size-XS" data-trim>
+        <pre class="fragment"><code class="hljs html size-XS" data-trim>
+&lt;!-- настраиваем Mocha --&gt;
+&lt;script&gt; mocha.setup('bdd'); &lt;/script&gt;
+        </code></pre>
+
+        <pre class="fragment"><code class="hljs html size-XS" data-trim>
+&lt;!-- подключаем файл с тестами --&gt;
+&lt;script src="/form.test.js"&gt;&lt;/script&gt;
+        </code></pre>
+
+        <pre class="fragment"><code class="hljs html size-XS" data-trim>
+&lt;!-- элемент в котором будут результаты тестов --&gt;
+&lt;div id="mocha"&gt;&lt;/div&gt;
+        </code></pre>
+
+        <pre class="fragment"><code class="hljs html size-XS" data-trim>
+&lt;!-- запускаем Mocha --&gt;
+&lt;script&gt; mocha.run(); &lt;/script&gt;
+        </code></pre>
+    </section>
+
+    <section>
+        <h4><a href="http://localhost:63342/examples/twitter-signup/index.html" target="_blank">DEMO</a></h4>
+    </section>
+</section>
+
+<section>
+    <section>
+        <h3>Автоматизировать?</h3>
+    </section>
+
+    <section>
+        <h3><a href="http://phantomjs.org/" target="_blank">PhantomJS</a></h3>
+
+        <blockquote cite="http://phantomjs.org/">
+            PhantomJS is a headless WebKit scriptable with a JavaScript API.
+        </blockquote>
+    </section>
+
+    <section>
+        <h3><a href="https://github.com/nathanboktae/mocha-phantomjs" target="_blank">mocha-phantomjs</a></h3>
+
+        <pre class="fragment"><code class="hljs size-S" data-trim>$ npm install -g mocha-phantomjs</code></pre>
+    </section>
+
+    <section>
+        <h4>Адаптируем запуск</h4>
+
+        <pre ><code class="hljs html size-XS" data-trim>
+&lt;!-- запускаем Mocha --&gt;
+&lt;script&gt;
+    window.mochaPhantomJS ?
+        mochaPhantomJS.run() :
+        mocha.run();
+&lt;/script&gt;
+        </code></pre>
+    </section>
+
+    <section>
+        <pre><code class="hljs size-XS" data-trim>$ mocha-phantomjs twitter-signup.html</code></pre>
+        <br>
+        <pre class="size-XS code fragment">
+  Twitter signup
+    <span style="color:green">✓</span> should alert when enter `twitterok`
+
+  <span style="color:green">1 passing</span> (508ms)
+    </section>
+
+    <section>
+        <h3><a href="https://karma-runner.github.io">Karma</a></h3>
+
+        <p>Для запуска модульных тестов в реальном браузере</p>
+    </section>
+</section>
+
+<section>
+
+    <section data-background="images/test-cases.jpg" class='image'>
+        <h3>Тестирование сценариев</h3>
+    </section>
+
+     <section>
+        <ul>
+            <li>Зайти на главную страницу twitter.com</li>
+            <li>В строке поиска вбить #DumpConf</li>
+            <li>Получить список твитов</li>
+        </ul>
+     </section>
+</section>
+
+<section>
+    <section data-background="images/casperjs_header_pic.jpg" class='image'>
+    </section>
+
+    <section>
+        <h3><a href="http://casperjs.org/" target="_blank">casperjs</a></h3>
+
+        <pre class="fragment"><code class="hljs size-S" data-trim>$ npm install -g casperjs</code></pre>
+    </section>
+
+    <section>
+        <pre><code class="hljs javascript size-S" data-trim>
+casper.test.begin(
+    'Search #DumpConf in twitter',
+    function (test) { /* test */ }
+);
+        </code></pre>
+    </section>
+
+    <section>
+        <pre><code class="hljs size-XS" data-trim>
+casper
+    .start('https://twitter.com/')
+        </code></pre>
+        <pre class="fragment"><code class="hljs size-XS">    .thenClick('.ItemSearch')</code></pre>
+        <pre class="fragment"><code class="hljs size-XS">    .then(function () {
+        this.fill('form#global-nav-search', {
+            q: '#DumpConf'
+        }, true);
+    })</code></pre>
+    </section>
+
+    <section>
+        <pre><code class="hljs size-XS">    .then(function () {
+        test.assertUrlMatch(/\/search/,
+            'should redirect to search page');
+    })</code></pre>
+
+        <pre class="fragment"><code class="hljs size-XS">    .then(function () {
+        this.capture('twitter.png');
+    })</code></pre>
+
+        <pre class="fragment"><code class="hljs size-XS">    .run(function () {
+        test.done();
+    });</code></pre>
+    </section>
+
+    <section>
+        <pre><code class="hljs size-XS" data-trim>$ casperjs test test/casper-test.js</code></pre>
+
+        <img src="images/casper-test-report.jpg" alt="Casper test report" class="fragment"/>
+    </section>
+
+    <section>
+        <h3><a href="http://webdriver.io/">Selenium</a></h3>
+
+        <p>
+            Для тестирования в настоящих браузерах
+        </p>
+    </section>
+</section>
+
+
+<section>
+    <section data-background="images/repeat.jpg" class="image">
+        <h3>Запускайте чаще</h3>
+    </section>
+
+    <section>
+        <ul class="size-M">
+            <li class="fragment">В IDE по хоткею</li>
+            <li class="fragment">При сохранении файла</li>
+            <li class="fragment">Перед коммитом и пушем</li>
+            <li class="fragment">CI сервер</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2><a href="https://travis-ci.org/">Travis</a></h2>
+    </section>
+
+    <section>
+        <h3>package.json</h3>
+            <pre><code class="hljs javascript size-XS" data-trim>
 {
     "scripts": {
         "test": "mocha test"
     }
 }
-            </code></pre>
-        </section>
+        </code></pre>
+    </section>
 
-        <section>
-            <h3>.travis.yml</h3>
+    <section>
+        <h3>.travis.yml</h3>
 
-            <pre><code class="hljs javascript size-XS" data-trim>
+        <pre><code class="hljs javascript size-XS" data-trim>
 language: node_js
 node_js:
-  - "4.1"
-            </code></pre>
-        </section>
-
-        <section>
-            <h4><a href="https://travis-ci.org/Zhigalov/frontend-fellows-test/builds" target="_blank">demo-time</a></h4>
-        </section>
+    - "4.1"
+        </code></pre>
     </section>
 
     <section>
-        <section data-background="images/first-step.png" class="image">
-            <h3>Первый шаг</h3>
-        </section>
-
-        <section>
-            <ul class="size-M">
-                <li class="fragment">Хелпер</li>
-                <li class="fragment">Базовая модель</li>
-                <li class="fragment">Независимый модуль</li>
-            </ul>
-        </section>
+        <h3><a href="https://travis-ci.org/Zhigalov/frontend-fellows-test/builds" target="_blank">DEMO</a></h3>
     </section>
 
     <section>
-        <h3>Спасибо!</h3>
+        <h3>Информировать команду</h3>
 
-        <ul class="size-S">
-            <li><a href="https://github.com/Zhigalov/frontend-fellows-test">github.com/Zhigalov/frontend-fellows-test</a></li>
-            <li><a href="https://zhigalov.github.io/frontend-fellows-slides">zhigalov.github.io/frontend-fellows-slides</a></li>
-            <br>
-            <li><a href="https://mochajs.org/">mochajs.org</a></li>
-            <li><a href="http://chaijs.com/">chaijs.com</a></li>
-            <li><a href="https://github.com/mfncooper/mockery">github.com/mfncooper/mockery</a></li>
-            <li><a href="http://sinonjs.org/">sinonjs.org</a></li>
-            <li><a href="https://github.com/pgte/nock">github.com/pgte/nock</a></li>
-            <li><a href="https://travis-ci.org/">travis-ci.org</a></li>
+        <ul>
+            <li class="fragment"><img src="https://camo.githubusercontent.com/2a27dea777240ca4a7a5ea072363ef90b91b918b/68747470733a2f2f7472617669732d63692e6f72672f5a686967616c6f762f66726f6e74656e642d66656c6c6f77732d746573742e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/Zhigalov/frontend-fellows-test.svg?branch=master" style="max-width:100%;"></li>
+            <li class="fragment">Письмо</li>
+            <li class="fragment">SMS сообщение</li>
+            <li class="fragment">Или как-то еще... ;)</li>
         </ul>
-
-        <p>
-            @sergey_zhigalov
-        </p>
     </section>
+</section>
+
+<section>
+    <section data-background="images/first-step.png" class="image">
+        <h3>Первый шаг</h3>
+    </section>
+
+    <section>
+        <ul class="size-M">
+            <li class="fragment">Хелпер</li>
+            <li class="fragment">Базовая модель</li>
+            <li class="fragment">Независимый модуль</li>
+        </ul>
+    </section>
+</section>
+
+<section  data-background="images/medical-plaster.jpg" class='image'>
+    <h3>Пишите тесты сразу</h3>
+</section>
+
+<section>
+    <h3>Спасибо!</h3>
+
+    <ul class="size-S">
+        <li><a href="https://mochajs.org/">mochajs.org</a></li>
+        <li><a href="http://chaijs.com/">chaijs.com</a></li>
+        <li><a href="https://github.com/mfncooper/mockery">github.com/mfncooper/mockery</a></li>
+        <li><a href="http://sinonjs.org/">sinonjs.org</a></li>
+        <li><a href="https://github.com/pgte/nock">github.com/pgte/nock</a></li>
+        <li><a href="https://travis-ci.org/">travis-ci.org</a></li>
+    </ul>
+
+    <p>
+        @sergey_zhigalov
+    </p>
+</section>
 </div>
 
 </div>
