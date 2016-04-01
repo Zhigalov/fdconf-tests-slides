@@ -63,7 +63,7 @@
     </section>
 
     <section>
-        <h4>... то сейчас</h4>
+        <h4>... но сейчас</h4>
 
         <img src="images/new_web_application.png" alt="New web application" />
     </section>
@@ -78,7 +78,9 @@
             <li class="fragment">Живая документация</li>
         </ul>
     </section>
+</section>
 
+<section>
     <section>
         <h3>Багфикс через тесты</h3>
 
@@ -99,26 +101,11 @@
             <li class="fragment">Легче чинить баг</li>
         </ul>
     </section>
+</section>
 
+<section>
     <section data-background="images/mother-child.jpeg" class='image'>
         <h3>как ребенок</h3>
-    </section>
-
-    <section>
-        <h4>Приемы тестирования можно использовать и без тестов</h4>
-    </section>
-
-    <section>
-        <h3><a href="https://github.com/pgte/nock" target="_blank">nock</a></h3>
-
-        <pre><code class="hljs javascript size-XS" data-trim>
-var nock = require('nock');
-
-nock('https://translate.yandex.net')
-    .get('/api/v1.5/tr.json/translate')
-    .query(true)
-    .reply(200, {text: ['Hello, world!']});
-        </code></pre>
     </section>
 </section>
 
@@ -496,6 +483,26 @@ node_js:
 
 <section  data-background="images/medical-plaster.jpg" class='image'>
     <h3>Пишите тесты сразу</h3>
+</section>
+
+
+<section>
+    <section>
+        <h4>Приемы тестирования можно использовать и без тестов</h4>
+    </section>
+
+    <section>
+        <h3><a href="https://github.com/pgte/nock" target="_blank">nock</a></h3>
+
+        <pre><code class="hljs javascript size-XS" data-trim>
+var nock = require('nock');
+
+nock('https://translate.yandex.net')
+    .get('/api/v1.5/tr.json/translate')
+    .query(true)
+    .reply(200, {text: ['Hello, world!']});
+        </code></pre>
+    </section>
 </section>
 
 <section>
