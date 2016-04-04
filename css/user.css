@@ -1,3 +1,7 @@
+.reveal {
+    font-size: 40px;
+}
+
 .reveal h1, .reveal h2 {
     text-transform: none;
 }
@@ -75,14 +79,14 @@ pre.size-S {
 section.size-XS,
 section .size-XS,
 pre.size-XS {
-    font-size: 27px;
-    line-height: 40px;
+    font-size: 33px;
+    line-height: 47px;
 }
 
 section.size-XXS,
 section .size-XXS,
 pre.size-XXS {
-    font-size: 25px;
+    font-size: 26px;
     line-height: 37px;
 }
 
@@ -166,7 +170,7 @@ img {
 
 .reveal .slide-number {
     font-family: 'sourcecodepro-light';
-    font-size: 1em;
+    font-size: .7em;
     background-color: #111111;
     padding: 7px;
 }

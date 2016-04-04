@@ -33,98 +33,76 @@
 	<!-- Any section element inside of this container is displayed as a slide -->
 <div class="slides">
 <section>
-	<h3>«Если у вас нету тестов ...»</h3>
+    <h2>«Если у вас нету тестов ...»</h2>
 
     <p>Сергей Жигалов</p>
     <p><img src="images/logo.svg" alt="Яндекс" style="background-color: #111111" /></p>
 </section>
 
-<!-- Мотивационная часть в которой я стараюсь объяснить зачем нужны тесты -->
-
 <section>
-    <section data-background="images/tests-is-pain.jpg" class='image'>
-        <h3>Зачем?</h3>
+    <section>
+        <pre><code class="hljs javascript size-S" data-trim>
+function hashTagGenerator(words) {
+    return '#' + words
+            .split(/\s+/)
+            .map(normalizeWord)
+            .join('');
+}
+        </code></pre>
     </section>
 
     <section>
-        <h4>Много-много лет назад...</h4>
+        <h3>Приятно</h3>
 
-        <ul>
-            <li class="fragment">Показать всплывашку</li>
-            <li class="fragment">Подсветить инпут</li>
-            <li class="fragment">Задизейблить кнопочку</li>
-        </ul>
+        <pre><code class="hljs javascript size-XS" data-trim>
+function hashTagGeneratorTest() {
+    var actual = hasTagGenerator('hello DUMP');
+
+    actual.should.be.equal('#HelloDump');
+}
+        </code></pre>
     </section>
 
-    <section>
-        <h4>Много-много лет назад...</h4>
+    <section data-transition="slide-in">
+        <h3>Полезно</h3>
 
-        <img src="images/old_web_application.png" alt="Old web application" />
+        <p class="pos left">Придает уверенности</p>
+
+        <img src="images/old_web_application.png" alt="Old web application" class="fragment"/>
     </section>
 
-    <section>
-        <h4>... но сейчас</h4>
+    <section data-transition="none">
+        <h3>Полезно</h3>
 
-        <img src="images/new_web_application.png" alt="New web application" />
+        <p class="pos left">Придает уверенности</p>
+
+        <img src="images/new_web_application.png" alt="New web application"/>
     </section>
 
-    <section>
-        <h4>Поддержка кода</h4>
 
-        <ul>
-            <li class="fragment">Рефакторинг</li>
-            <li class="fragment">Обновление зависимостей</li>
-            <li class="fragment">Целостность продукта при распределенной разработке</li>
-            <li class="fragment">Живая документация</li>
-        </ul>
+    <section data-transition="slide-out">
+        <h3>Полезно</h3>
+
+        <p class="pos left">Придает уверенности</p>
+        <p class="pos left">Помогает рефакторить</p>
+        <p class="pos left fragment">Обновлять зависимости</p>
+        <p class="pos left fragment">Быть командой</p>
+        <p class="pos left fragment">Живая документация</p>
     </section>
 </section>
 
 <section>
     <section>
-        <h3>Багфикс через тесты</h3>
-
-        <ol>
-            <li class="fragment">По описанию бага пишем тест</li>
-            <li class="fragment">Проверяем что баг воспроизводится</li>
-            <li class="fragment">Чиним баг</li>
-            <li class="fragment">Проверяем что бага нет</li>
-        </ol>
-    </section>
-
-    <section>
-        <h3>Багфикс через тесты</h3>
-
-        <ul>
-            <li class="fragment">Покрыли пропущеный кейс</li>
-            <li class="fragment">Больше не словим этот баг</li>
-            <li class="fragment">Легче чинить баг</li>
-        </ul>
-    </section>
-</section>
-
-<section>
-    <section data-background="images/mother-child.jpeg" class='image'>
-        <h3>как ребенок</h3>
-    </section>
-</section>
-
-<section data-background="images/begin.jpg" class='image'>
-    <h3>К делу!</h3>
-</section>
-
-<section>
-
-    <section>
+        <h2>Часть I</h2>
         <h3>Тестирование модулей</h3>
     </section>
 
     <section>
         <h3>Билдер хештегов</h3>
 
-        <pre><code class="hljs javascript size-XS" data-trim>
-'котаны'                    // '#Котаны'
-'Живи быстро, умри молодым' // '#ЖивиБыстроУмриМолодым'
+        <pre><code class="hljs size-XS" data-trim>
+DUMP 2016              -> #Dump2016
+Тестов много не бывает -> #ТестовМногоНеБывает
         </code></pre>
     </section>
 
@@ -149,9 +127,20 @@ function normalizeWord(word) {
 module.exports = hashTagGenerator;
         </code></pre>
     </section>
+</section>
+
+<section>
+    <section data-background="images/nodejs-new-white-pantone.png" class="image">
+        <h4 class="fragment"><a href="https://nodejs.org">https://nodejs.org</a></h4>
+    </section>
+
+
+    <section data-background="images/mocha.png" class="image">
+        <h4 class="fragment"><code>$ npm install mocha --save-dev</code></h4>
+    </section>
 
     <section>
-        <pre class="size-XS">app/
+        <pre class="size-S">app/
 <span class="grey">└──</span> src
 <span class="grey"> </span>   <span class="grey">└──</span> hashTagGenerator.js</span>
 <span class="grey"> </span>   <span class="grey">└──</span> ...</span>
@@ -159,44 +148,30 @@ module.exports = hashTagGenerator;
     <span class="grey">└──</span> hashTagGenerator-test.js</span>
     <span class="grey">└──</span> ...</span>
         </pre>
-        <br />
-        <pre class="fragment"><code class="hljs javascript size-XS" data-trim>
-// hashTagGenerator-test.js
-        </code></pre>
-
-        <pre class="fragment"><code class="hljs javascript size-XS">
-var hasTagGenerator = require('../src/hashTagGenerator');
-require('chai').should();</code></pre>
-
-        <pre class="fragment"><code class="hljs javascript size-XS">
-describe('Hash tag generator', function () {
-    /* test */
-});</code></pre>
-   </section>
-
-
-    <section>
-        <pre><code class="hljs javascript size-XS" data-trim>
-it('should normalize words', function () {
-    var actual = hasTagGenerator('hello DUMP');
-
-    actual.should.be.equal('#HelloDump');
-});
-        </code></pre>
     </section>
 
     <section>
-        <h3><a href="https://mochajs.org/">mocha</a></h3>
-
-        <pre><code class="hljs size-S bash" data-trim>
-$ npm install mocha --save-dev
+        <br />
+        <pre><code class="hljs javascript size-XXS" data-trim>
+var hashTag = require('../src/hashTagGenerator.js');
         </code></pre>
 
-        <pre><code class="hljs bash size-S fragment" data-trim>
+<pre class="javascript join-top fragment" data-fragment-index="1"><code class="size-XXS"> </code></pre>
+<pre class="javascript join-top fragment" data-fragment-index="1"><code class="size-XXS">describe('Hash tag generator', function () {</code></pre>
+<pre class="javascript join-top fragment" data-fragment-index="2"><code class="size-XXS">    it('should normalize words', function () {</code></pre>
+<pre class="javascript join-top fragment" data-fragment-index="3"><code class="size-XXS">        var actual = hashTag('hello DUMP');</code></pre>
+<pre class="javascript join-top fragment" data-fragment-index="4"><code class="size-XXS"> </code></pre>
+<pre class="javascript join-top fragment" data-fragment-index="4"><code class="size-XXS">        actual.should.be.equal('#HelloDump');</code></pre>
+<pre class="javascript join-top fragment" data-fragment-index="2"><code class="size-XXS">    });</code></pre>
+<pre class="javascript join-top fragment" data-fragment-index="1"><code class="size-XXS">});</code></pre>
+   </section>
+
+    <section>
+        <pre><code class="hljs bash size-S" data-trim>
 $ mocha test
         </code></pre>
         <br>
-        <pre class="size-S fragment" style="background-color: #3f3f3f">
+        <pre class="size-S fragment code">
   Hash tag generator
     <span style="color:green">✓</span> should start with #
     <span style="color:green">✓</span> should concat words
@@ -204,27 +179,78 @@ $ mocha test
 
 <span style="color:green">3 passing</span> (9ms)</pre>
     </section>
+</section>
 
-    <section data-background="images/thinking.jpg" class="image">
-        <h2>... под другим углом</h2>
+<section>
+    <section data-background="images/mother-child.jpeg" class='image'>
+        <h3>как ребенок</h3>
     </section>
 
     <section>
-        <h3>И в какой-то момент</h3>
+        <h3>А что если...?</h3>
 
         <pre><code class="hljs javascript size-XS" data-trim>
 it('should clean extra symbols', function () {
-    var actual = hasTagGenerator('    #@my-ha-ha!!!');
+    var actual = hashTag('    #@mu-ha-ha!!!');
 
-    actual.should.be.equal('#MyHaHa');
+    actual.should.be.equal('#MuHaHa');
 });
         </code></pre>
+    </section>
+
+    <section>
+        <pre class="size-XXS code">
+  Hash tag generator
+    <span style="color:green">✓</span> should start with #
+    <span style="color:green">✓</span> should concat words
+    <span style="color:green">✓</span> should normalize words
+    <span style="color:red">1) should clean extra symbols</span>
+
+<span style="color:green">3 passing</span> (13ms)
+<span style="color:red">1 failing</span>
+
+1) Hash tag generator should clean extra symbols:
+
+    <span style="color:red">AssertionError: expected '##@%mu-ha-ha!'
+                    to equal '#MuHaHa'</span>
+    <span style="color:green">+ expected</span> <span style="color:red">- actual</span>
+
+    <span style="color:red">-##@%mu-ha-ha!</span>
+    <span style="color:green">+#MuHaHa</span>
+    </pre>
+    </section>
+
+    <section data-transition="slide-in">
+        <pre><code class="hljs javascript size-S" data-trim data-noescape>
+function hashTagGenerator(words) {
+    return '#' + words
+            .split(<mark>/\s+/</mark>)
+            .map(normalizeWord)
+            .join('');
+}
+        </code></pre>
+    </section>
+
+    <section data-transition="slide-out">
+        <pre><code class="hljs javascript size-S" data-trim data-noescape>
+function hashTagGenerator(words) {
+    return '#' + words
+            .split(<mark>/[^\wа-яё]/i</mark>)
+            .map(normalizeWord)
+            .join('');
+}
+        </code></pre>
+    </section>
+
+    <section data-background="images/thinking.jpg" class="image">
+        <h2>... под другим углом</h2>
     </section>
 </section>
 
 <section>
     <section>
-        <h3>Клиент-сайд тесты</h3>
+        <h2>Часть II</h2>
+        <h3>Тетирование клиентского кода</h3>
     </section>
 
     <section data-background="images/twitter-signin.jpg" class='image'>
@@ -232,13 +258,15 @@ it('should clean extra symbols', function () {
     </section>
 
     <section>
-<pre class="javascript join-top fragment" data-fragment-index="1"><code class="size-XS">describe('Twitter signup', function () {</code></pre>
-<pre class="javascript join-top fragment" data-fragment-index="2"><code class="size-XS">    it('should alert when enter `twitterok`', function () {</code></pre>
-<pre class="javascript join-top fragment" data-fragment-index="3"><code class="size-XS">        $('#full-name').val('twitterok').trigger('input');</code></pre>
-<pre class="javascript join-top fragment" data-fragment-index="3"><code class="size-XS"> </code></pre>
-<pre class="javascript join-top fragment" data-fragment-index="3"><code class="size-XS">        $('.notwitter').hasClass('active').should.be.true;</code></pre>
-<pre class="javascript join-top fragment" data-fragment-index="2"><code class="size-XS">    });</code></pre>
-<pre class="javascript join-top fragment" data-fragment-index="1"><code class="size-XS">});</code></pre>
+        <pre class="javascript" ><code class="size-XXS">
+describe('Twitter signup', function () {
+    it('should alert when enter `twitterok`', function () {
+        $('#full-name').val('twitterok').trigger('input');
+
+        $('.notwitter').hasClass('active').should.be.true;
+    });
+});
+        </code></pre>
     </section>
 
     <section>
@@ -286,7 +314,7 @@ it('should clean extra symbols', function () {
 </section>
 
 <section>
-    <section>
+    <section data-background="images/automatization.gif" class="image">
         <h3>Автоматизировать?</h3>
     </section>
 
@@ -301,7 +329,9 @@ it('should clean extra symbols', function () {
     <section>
         <h3><a href="https://github.com/nathanboktae/mocha-phantomjs" target="_blank">mocha-phantomjs</a></h3>
 
-        <pre class="fragment"><code class="hljs size-S" data-trim>$ npm install -g mocha-phantomjs</code></pre>
+        <pre><code class="hljs size-S" data-trim>
+            $ npm install -g mocha-phantomjs
+        </code></pre>
     </section>
 
     <section>
@@ -322,95 +352,81 @@ it('should clean extra symbols', function () {
         <br>
         <pre class="size-XS code fragment">
   Twitter signup
-    <span style="color:green">✓</span> should alert when enter `twitterok`
+    <span style="color:green">✓</span> should no error when input is empty
+    <span style="color:green">✓</span> should no error when input `teremok`
+    <span style="color:green">✓</span> should show error when input `twitterok`
 
-  <span style="color:green">1 passing</span> (508ms)
+  <span style="color:green">3 passing</span> (14ms)
     </section>
 
     <section>
-        <h3><a href="https://karma-runner.github.io">Karma</a></h3>
-
-        <p>Для запуска модульных тестов в реальном браузере</p>
+        <a href="https://karma-runner.github.io"><img src="images/karma.png" alt="Karma" /></a>
     </section>
 </section>
 
 <section>
-
-    <section data-background="images/test-cases.jpg" class='image'>
+    <section>
+        <h2>Часть III</h2>
         <h3>Тестирование сценариев</h3>
     </section>
 
      <section>
-        <ul>
-            <li>Зайти на главную страницу twitter.com</li>
-            <li>В строке поиска вбить #DumpConf</li>
-            <li>Получить список твитов</li>
-        </ul>
+         <p>
+            Перейти на главную страницу https://github.com
+         </p>
+         <p class="fragment">
+            ⬇ <br>
+            В строке поиска набрать "Слайды тестирование DUMP"
+        </p>
+        <p class="fragment">
+           ⬇ <br>
+           Проверить что репозиторий есть в списке
+        </p>
      </section>
 </section>
 
 <section>
-    <section data-background="images/casperjs_header_pic.jpg" class='image'>
+    <section data-background="images/WebdriverIO.jpg">
     </section>
 
     <section>
-        <h3><a href="http://casperjs.org/" target="_blank">casperjs</a></h3>
+        <h3>WebdriverIO</h3>
 
-        <pre class="fragment"><code class="hljs size-S" data-trim>$ npm install -g casperjs</code></pre>
-    </section>
-
-    <section>
-        <pre><code class="hljs javascript size-S" data-trim>
-casper.test.begin(
-    'Search #DumpConf in twitter',
-    function (test) { /* test */ }
-);
+        <pre class="javascript"><code class="size-S" data-trim>
+            $ npm install webdriverio
         </code></pre>
-    </section>
 
-    <section>
-        <pre><code class="hljs size-XS" data-trim>
-casper
-    .start('https://twitter.com/')
+
+        <pre class="javascript fragment"><code class="size-S" data-trim>
+            $ wdio config
         </code></pre>
-        <pre class="fragment"><code class="hljs size-XS">    .thenClick('.ItemSearch')</code></pre>
-        <pre class="fragment"><code class="hljs size-XS">    .then(function () {
-        this.fill('form#global-nav-search', {
-            q: '#DumpConf'
-        }, true);
-    })</code></pre>
-    </section>
 
-    <section>
-        <pre><code class="hljs size-XS">    .then(function () {
-        test.assertUrlMatch(/\/search/,
-            'should redirect to search page');
-    })</code></pre>
-
-        <pre class="fragment"><code class="hljs size-XS">    .then(function () {
-        this.capture('twitter.png');
-    })</code></pre>
-
-        <pre class="fragment"><code class="hljs size-XS">    .run(function () {
-        test.done();
-    });</code></pre>
-    </section>
-
-    <section>
-        <pre><code class="hljs size-XS" data-trim>$ casperjs test test/casper-test.js</code></pre>
-
-        <img src="images/casper-test-report.jpg" alt="Casper test report" class="fragment"/>
-    </section>
-
-    <section>
-        <h3><a href="http://webdriver.io/">Selenium</a></h3>
-
-        <p>
-            Для тестирования в настоящих браузерах
+        <p class="fragment">
+           ⬇ <br>
+           <code>wdio.conf.js</code>
         </p>
     </section>
-</section>
 
+    <section>
+<pre class="javascript join-top" data-fragment-index="1"><code class="size-XXS">describe('GitHub', function () {</code></pre>
+<pre class="javascript join-top fragment" data-fragment-index="2"><code class="size-XXS">   it('search', function () {</code></pre>
+<pre class="javascript join-top fragment" data-fragment-index="3"><code class="size-XXS">      browser.url('http://github.com');</code></pre>
+<pre class="javascript join-top fragment" data-fragment-index="4"><code class="size-XXS">      browser.setValue('input[name="q"]',</code></pre>
+<pre class="javascript join-top fragment" data-fragment-index="4"><code class="size-XXS">                       'Слайды тестирование DUMP');</code></pre>
+<pre class="javascript join-top fragment" data-fragment-index="5"><code class="size-XXS">      browser.submitForm('form[action="/search"]');</code></pre>
+<pre class="javascript join-top fragment" data-fragment-index="6"><code class="size-XXS">      var repoName = browser.getText('h3.repo-list-name');</code></pre>
+<pre class="javascript join-top fragment" data-fragment-index="7"><code class="size-XXS"> </code></pre>
+<pre class="javascript join-top fragment" data-fragment-index="7"><code class="size-XXS">      repoName.should.be.equal('Zhigalov/dump-tests-slides');</code></pre>
+<pre class="javascript join-top fragment" data-fragment-index="2"><code class="size-XXS">   });</code></pre>
+<pre class="javascript join-top" data-fragment-index="1"><code class="size-XXS">});</code></pre>
+    </section>
+
+    <section class="image">
+        <img src="images/webdriver-io-run.jpg" alt="Run webdriver" />
+
+        <h4 class="fragment">DEMO</h4>
+    </section>
+</section>
 
 <section>
     <section data-background="images/repeat.jpg" class="image">
@@ -418,36 +434,39 @@ casper
     </section>
 
     <section>
-        <ul class="size-M">
-            <li class="fragment">В IDE по хоткею</li>
-            <li class="fragment">При сохранении файла</li>
-            <li class="fragment">Перед коммитом и пушем</li>
-            <li class="fragment">CI сервер</li>
-        </ul>
+        <p class="pos left">В IDE по хоткею</p>
+        <p class="pos left fragment">При сохранении файла</p>
+        <p class="pos left fragment">Перед коммитом и пушем (<a href="https://www.npmjs.com/package/husky">husky</a>)</p>
+        <p class="pos left fragment">CI сервер (
+            <a href="http://jetbrains.ru/products/teamcity/">TeamCity</a>,
+            <a href="https://drone.io/">drone.io</a>,
+            <a href="https://travis-ci.org/">Travis CI</a>,
+            ...)</p>
     </section>
 
     <section>
-        <h2><a href="https://travis-ci.org/">Travis</a></h2>
+        <h2><a href="https://travis-ci.org/">Travis CI</a></h2>
     </section>
 
     <section>
-        <h3>package.json</h3>
+        <pre><code class="hljs yml size-XS" data-trim>
+# .travis.yml
+
+language: node_js
+node_js:
+    - "4.1"
+        </code></pre>
+    </section>
+
+    <section>
             <pre><code class="hljs javascript size-XS" data-trim>
+// package.json
+
 {
     "scripts": {
         "test": "mocha test"
     }
 }
-        </code></pre>
-    </section>
-
-    <section>
-        <h3>.travis.yml</h3>
-
-        <pre><code class="hljs javascript size-XS" data-trim>
-language: node_js
-node_js:
-    - "4.1"
         </code></pre>
     </section>
 
@@ -459,7 +478,7 @@ node_js:
         <h3>Информировать команду</h3>
 
         <ul>
-            <li class="fragment"><img src="https://camo.githubusercontent.com/2a27dea777240ca4a7a5ea072363ef90b91b918b/68747470733a2f2f7472617669732d63692e6f72672f5a686967616c6f762f66726f6e74656e642d66656c6c6f77732d746573742e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/Zhigalov/frontend-fellows-test.svg?branch=master" style="max-width:100%;"></li>
+            <li class="fragment"><img src="images/CI-result.jpg" style="max-width:100%;"></li>
             <li class="fragment">Письмо</li>
             <li class="fragment">SMS сообщение</li>
             <li class="fragment">Или как-то еще... ;)</li>
@@ -467,28 +486,17 @@ node_js:
     </section>
 </section>
 
-<section>
-    <section data-background="images/first-step.png" class="image">
-        <h3>Первый шаг</h3>
-    </section>
-
-    <section>
-        <ul class="size-M">
-            <li class="fragment">Хелпер</li>
-            <li class="fragment">Базовая модель</li>
-            <li class="fragment">Независимый модуль</li>
-        </ul>
-    </section>
+<section data-background="images/first-step.png" class="image">
+    <h3>Первый шаг</h3>
 </section>
 
 <section  data-background="images/medical-plaster.jpg" class='image'>
     <h3>Пишите тесты сразу</h3>
 </section>
 
-
 <section>
-    <section>
-        <h4>Приемы тестирования можно использовать и без тестов</h4>
+    <section data-background='images/search-bug.jpg' class="image">
+        <h3>Не убедил?</h3>
     </section>
 
     <section>
@@ -506,20 +514,24 @@ nock('https://translate.yandex.net')
 </section>
 
 <section>
+    <h3>Итого</h3>
+
+    <p class="pos left">Писать тесты приятно</p>
+    <p class="pos left fragment">удобно</p>
+    <p class="pos left fragment">и полезно!</p>
+</section>
+
+<section>
     <h3>Спасибо!</h3>
 
-    <ul class="size-S">
-        <li><a href="https://mochajs.org/">mochajs.org</a></li>
-        <li><a href="http://chaijs.com/">chaijs.com</a></li>
-        <li><a href="https://github.com/mfncooper/mockery">github.com/mfncooper/mockery</a></li>
-        <li><a href="http://sinonjs.org/">sinonjs.org</a></li>
-        <li><a href="https://github.com/pgte/nock">github.com/pgte/nock</a></li>
-        <li><a href="https://travis-ci.org/">travis-ci.org</a></li>
-    </ul>
-
-    <p>
-        @sergey_zhigalov
-    </p>
+    <pre><code class="hljs javascript size-XS" data-trim data-noescape>
+speacker.should.deep.equal({
+    face: <img src="images/zhigalov.jpeg" alt="My face!" width="300" />,
+    name: 'Сергей',
+    twitter: '@sergey_zhigalov',
+    email: 'zhigalov@yandex-team.ru'
+});
+</code></pre>
 </section>
 </div>
 
