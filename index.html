@@ -42,21 +42,21 @@
 <section>
     <section>
         <pre><code class="hljs javascript size-S" data-trim>
-function hashTagGenerator(words) {
+function(words) {
     return '#' + words
-            .split(/\s+/)
-            .map(normalizeWord)
-            .join('');
+        .split(/\s+/)
+        .map(normalizeWord)
+        .join('');
 }
         </code></pre>
     </section>
 
     <section>
-        <h3>Приятно</h3>
+        <h3>Это тоже удовольствие!</h3>
 
         <pre><code class="hljs javascript size-XS" data-trim>
-function hashTagGeneratorTest() {
-    var actual = hasTagGenerator('hello DUMP');
+function() {
+    var actual = hashTag('hello DUMP');
 
     actual.should.be.equal('#HelloDump');
 }
@@ -64,7 +64,7 @@ function hashTagGeneratorTest() {
     </section>
 
     <section data-transition="slide-in">
-        <h3>Полезно</h3>
+        <h3>Тесты - это продуктивно</h3>
 
         <p class="pos left">Придает уверенности</p>
 
@@ -72,7 +72,7 @@ function hashTagGeneratorTest() {
     </section>
 
     <section data-transition="none">
-        <h3>Полезно</h3>
+        <h3>Тесты - это продуктивно</h3>
 
         <p class="pos left">Придает уверенности</p>
 
@@ -81,7 +81,7 @@ function hashTagGeneratorTest() {
 
 
     <section data-transition="slide-out">
-        <h3>Полезно</h3>
+        <h3>Тесты - это продуктивно</h3>
 
         <p class="pos left">Придает уверенности</p>
         <p class="pos left">Помогает рефакторить</p>
@@ -130,13 +130,12 @@ module.exports = hashTagGenerator;
 </section>
 
 <section>
-    <section data-background="images/nodejs-new-white-pantone.png" class="image">
-        <h4 class="fragment"><a href="https://nodejs.org">https://nodejs.org</a></h4>
+    <section data-background="images/nodejs.jpg" class="image">
+        <h4>nodejs.org</h4>
     </section>
 
-
     <section data-background="images/mocha.png" class="image">
-        <h4 class="fragment"><code>$ npm install mocha --save-dev</code></h4>
+        <h4><code>$ npm install mocha</code></h4>
     </section>
 
     <section>
@@ -166,6 +165,19 @@ var hashTag = require('../src/hashTagGenerator.js');
 <pre class="javascript join-top fragment" data-fragment-index="1"><code class="size-XXS">});</code></pre>
    </section>
 
+   <section>
+       <h3>chaijs</h3>
+
+       <pre class="javascript"><code class="size-S" data-trim>
+$ npm install chai
+        </code></pre>
+<br>
+        <pre class="javascript fragment"><code class="size-S" data-trim>
+var chai = require('chai');
+chai.should();
+         </code></pre>
+   </section>
+
     <section>
         <pre><code class="hljs bash size-S" data-trim>
 $ mocha test
@@ -173,21 +185,19 @@ $ mocha test
         <br>
         <pre class="size-S fragment code">
   Hash tag generator
-    <span style="color:green">✓</span> should start with #
-    <span style="color:green">✓</span> should concat words
     <span style="color:green">✓</span> should normalize words
 
-<span style="color:green">3 passing</span> (9ms)</pre>
+<span style="color:green">1 passing</span> (3ms)</pre>
     </section>
 </section>
 
 <section>
-    <section data-background="images/mother-child.jpeg" class='image'>
+    <section data-background="images/mother-child.jpg" class='image'>
         <h3>как ребенок</h3>
     </section>
 
     <section>
-        <h3>А что если...?</h3>
+        <h3>А что, если...</h3>
 
         <pre><code class="hljs javascript size-XS" data-trim>
 it('should clean extra symbols', function () {
@@ -258,14 +268,30 @@ function hashTagGenerator(words) {
     </section>
 
     <section>
-        <pre class="javascript" ><code class="size-XXS">
+        <pre class="javascript" ><code class="size-XXS" data-trim>
 describe('Twitter signup', function () {
     it('should alert when enter `twitterok`', function () {
-        $('#full-name').val('twitterok').trigger('input');
+        inputTextTo($('#full-name'), 'twitterok');
 
-        $('.notwitter').hasClass('active').should.be.true;
+        $('.notwitter').is(':visible').should.be.true;
     });
 });
+        </code></pre>
+    </section>
+
+    <section>
+        <pre class="javascript" ><code class="size-XS" data-trim>
+function inputTextTo($el, text) {
+    $el.val(text).trigger('input');
+}
+        </code></pre>
+<br>
+        <pre class="javascript fragment" ><code class="size-XS" data-trim>
+function inputTextTo($el, text) {
+    $el.focus();
+    document.execCommand(
+        'insertText', false, text);
+}
         </code></pre>
     </section>
 
@@ -294,7 +320,7 @@ describe('Twitter signup', function () {
 
         <pre class="fragment"><code class="hljs html size-XS" data-trim>
 &lt;!-- подключаем файл с тестами --&gt;
-&lt;script src="/form.test.js"&gt;&lt;/script&gt;
+&lt;script src="/form-test.js"&gt;&lt;/script&gt;
         </code></pre>
 
         <pre class="fragment"><code class="hljs html size-XS" data-trim>
@@ -422,6 +448,9 @@ describe('Twitter signup', function () {
     </section>
 
     <section class="image">
+        <pre>
+            <code class="size-XS">wdio wdio.conf.js</code>
+        </pre>
         <img src="images/webdriver-io-run.jpg" alt="Run webdriver" />
 
         <h4 class="fragment">DEMO</h4>
@@ -434,7 +463,7 @@ describe('Twitter signup', function () {
     </section>
 
     <section>
-        <p class="pos left">В IDE по хоткею</p>
+        <p class="pos left">В IDE</p>
         <p class="pos left fragment">При сохранении файла</p>
         <p class="pos left fragment">Перед коммитом и пушем (<a href="https://www.npmjs.com/package/husky">husky</a>)</p>
         <p class="pos left fragment">CI сервер (
@@ -500,32 +529,61 @@ node_js:
     </section>
 
     <section>
+        <img src="images/web_application.png" alt="web application" />
+    </section>
+
+    <section>
         <h3><a href="https://github.com/pgte/nock" target="_blank">nock</a></h3>
 
         <pre><code class="hljs javascript size-XS" data-trim>
 var nock = require('nock');
 
-nock('https://translate.yandex.net')
-    .get('/api/v1.5/tr.json/translate')
+nock('https://api.github.com')
+    .get('/users/zhigalov')
     .query(true)
-    .reply(200, {text: ['Hello, world!']});
+    .reply(200, {
+        "name": "Sergey Zhigalov",
+        "company": "Яндекс",
+        "email": "sergey.zhigalov@gmail.com"
+    });
+        </code></pre>
+    </section>
+
+    <section>
+        <pre><code class="hljs javascript size-XXS" data-trim>
+var request = require('request');
+var url = 'https://api.github.com/users/zhigalov';
+
+request(url, function (error, res, body) {
+    console.log(body);
+});
+        </code></pre>
+        <br>
+        <pre class="fragment"><code class="hljs javascript" data-trim>
+{
+    "name": "Sergey Zhigalov",
+    "company": "Яндекс",
+    "email": "sergey.zhigalov@gmail.com"
+}
         </code></pre>
     </section>
 </section>
 
 <section>
-    <h3>Итого</h3>
+    <h3>Тестирование - это:</h3>
 
-    <p class="pos left">Писать тесты приятно</p>
+    <p class="pos left fragment">приятно</p>
     <p class="pos left fragment">удобно</p>
-    <p class="pos left fragment">и полезно!</p>
+    <p class="pos left fragment">рабочий код</p>
+    <p class="pos left fragment">удовольствие</p>
+    <p class="pos left fragment">уверенность</p>
 </section>
 
 <section>
     <h3>Спасибо!</h3>
 
     <pre><code class="hljs javascript size-XS" data-trim data-noescape>
-speacker.should.deep.equal({
+speaker.should.deep.equal({
     face: <img src="images/zhigalov.jpeg" alt="My face!" width="300" />,
     name: 'Сергей',
     twitter: '@sergey_zhigalov',
